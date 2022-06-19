@@ -1,0 +1,59 @@
+.post-title {
+  $timing: 0.4s;
+  $subTitleTop: 5rem;
+  $subTitleFS: 1.5rem;
+  $subTitleColor: #ebaa41;
+  $mainTitleTop: 9rem;
+  $mainTitleFS: 2.8rem;
+  $left: 2rem;
+
+  &__arrow {
+    position: absolute;
+    top: calc(#{$subTitleTop} + #{$subTitleFS} / 2);
+    left: calc(#{$left} - 1.5rem);
+    height: 2rem;
+    opacity: 0;
+    transition: opacity $timing;
+    transform: translateY(-50%);
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    transition: all $timing;
+
+    &.phase1 {
+      top: $subTitleTop;
+      left: 0;
+      transform: translateX(-100%);
+      opacity: 0;
+      font-size: $subTitleFS;
+      color: $subTitleColor;
+    }
+
+    &.phase2 {
+      // top: $subTitleTop;
+      top: calc(#{$subTitleTop} + #{$subTitleFS} / 2);
+      left: calc(#{$left} + 1rem);
+      transform: translateY(-50%);
+      font-size: $subTitleFS;
+      color: $subTitleColor;
+    }
+
+    &.phase3 {
+      top: $mainTitleTop;
+      left: $left;
+      font-size: $mainTitleFS;
+      color: white;
+    }
+
+    &.phase4 {
+      top: $mainTitleTop;
+      left: 100%;
+      font-size: $mainTitleFS;
+    }
+  }
+}
