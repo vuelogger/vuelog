@@ -16,6 +16,7 @@
             </p>
           </div>
         </div>
+        <Tags :tags="post.tags" />
         <div class="content" v-html="post.body"></div>
       </template>
       <div v-else class="loader-wrapper">

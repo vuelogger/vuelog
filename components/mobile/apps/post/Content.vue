@@ -2,6 +2,9 @@
   <article class="m-post-content">
     <template v-if="post">
       <h1 class="title">{{ post.title }}</h1>
+
+      <Tags fontSize="1.6rem" :tags="post.tags" />
+
       <p class="created">
         {{ $moment(post.created).format("LL") }}
       </p>
@@ -23,5 +26,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
