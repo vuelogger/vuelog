@@ -123,6 +123,8 @@ export default {
       const res = await axios.get("https://vuelog.dev/api/categories");
 
       const route = [];
+
+      route.push("/");
       for (const c of res.data) {
         const result = await axios.get("https://vuelog.dev/api/posts", {
           params: {
@@ -133,6 +135,7 @@ export default {
         });
         const category = c.category === "" ? "all" : c.category;
 
+        route.push("/post/" + category);
         for (const p of result.data.data) {
           route.push("/post/" + category + "/" + p.id);
         }
