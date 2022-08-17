@@ -1,3 +1,4 @@
+const axios = require("axios");
 export default {
   server: {
     host: "0", // default: localhost
@@ -110,7 +111,36 @@ export default {
     // https://go.nuxtjs.dev/content
     "nuxt-ssr-cache",
     "@nuxtjs/axios",
+    "@nuxtjs/sitemap",
   ],
+  sitemap: {
+    defaults: {
+      changefreq: "daily",
+      priority: 1,
+      lastmod: new Date(),
+    },
+    routes: async () => {
+      const res = await axios.get("https://vuelog.dev/api/categories");
+
+      const route = [];
+      for (const c of res.data) {
+        const result = await axios.get("https://vuelog.dev/api/posts", {
+          params: {
+            category: c.category,
+            pageSize: 10000,
+            currPage: 0,
+          },
+        });
+        const category = c.category === "" ? "all" : c.category;
+
+        for (const p of result.data.data) {
+          route.push("/post/" + category + "/" + p.id);
+        }
+      }
+
+      return route;
+    },
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   // env: {
