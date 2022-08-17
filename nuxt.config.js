@@ -137,6 +137,7 @@ export default {
           route.push("/post/" + category + "/" + p.id);
         }
       }
+      console.log(route);
 
       return route;
     },
