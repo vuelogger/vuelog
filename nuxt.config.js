@@ -119,6 +119,7 @@ export default {
       priority: 1,
       lastmod: new Date(),
     },
+    //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
     routes: async () => {
       // const res = await axios.get("https://vuelog.dev/api/categories");
 
