@@ -120,29 +120,30 @@ export default {
       lastmod: new Date(),
     },
     routes: async () => {
-      const res = await axios.get("https://vuelog.dev/api/categories");
+      // const res = await axios.get("https://vuelog.dev/api/categories");
 
-      const route = [];
+      // const route = [];
 
-      route.push("/");
-      for (const c of res.data) {
-        const result = await axios.get("https://vuelog.dev/api/posts", {
-          params: {
-            category: c.category,
-            pageSize: 10000,
-            currPage: 0,
-          },
-        });
-        const category = c.category === "" ? "all" : c.category;
+      // route.push("/");
+      // for (const c of res.data) {
+      //   const result = await axios.get("https://vuelog.dev/api/posts", {
+      //     params: {
+      //       category: c.category,
+      //       pageSize: 10000,
+      //       currPage: 0,
+      //     },
+      //   });
+      //   const category = c.category === "" ? "all" : c.category;
 
-        route.push("/post/" + category);
-        for (const p of result.data.data) {
-          route.push("/post/" + category + "/" + p.id);
-        }
-      }
-      console.log(route);
+      //   route.push("/post/" + category);
+      //   for (const p of result.data.data) {
+      //     route.push("/post/" + category + "/" + p.id);
+      //   }
+      // }
+      // console.log(route);
 
-      return route;
+      // return route;
+      return ["/users/1", "/users/2", "/users/3"];
     },
   },
 
