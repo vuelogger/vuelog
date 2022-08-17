@@ -121,30 +121,26 @@ export default {
     },
     //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
     routes: async () => {
-      // const res = await axios.get("https://vuelog.dev/api/categories");
+      const res = await axios.get("https://vuelog.dev/api/categories");
 
-      // const route = [];
+      const route = [];
 
-      // route.push("/");
-      // for (const c of res.data) {
-      //   const result = await axios.get("https://vuelog.dev/api/posts", {
-      //     params: {
-      //       category: c.category,
-      //       pageSize: 10000,
-      //       currPage: 0,
-      //     },
-      //   });
-      //   const category = c.category === "" ? "all" : c.category;
+      for (const c of res.data) {
+        const result = await axios.get("https://vuelog.dev/api/posts", {
+          params: {
+            category: c.category,
+            pageSize: 10000,
+            currPage: 0,
+          },
+        });
+        const category = c.category === "" ? "all" : c.category;
 
-      //   route.push("/post/" + category);
-      //   for (const p of result.data.data) {
-      //     route.push("/post/" + category + "/" + p.id);
-      //   }
-      // }
-      // console.log(route);
-
-      // return route;
-      return ["/users/1", "/users/2", "/users/3"];
+        route.push("/post/" + category);
+        for (const p of result.data.data) {
+          route.push("/post/" + category + "/" + p.id);
+        }
+      }
+      return route;
     },
   },
 
