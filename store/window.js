@@ -1,3 +1,22 @@
+const widths = {
+  About: {
+    w: 1080,
+    h: 700,
+  },
+  Post: {
+    w: 1080,
+    h: 700,
+  },
+  KakaoTalk: {
+    w: 400,
+    h: 650,
+  },
+  Diary: {
+    w: 1080,
+    h: 700,
+  },
+};
+
 export const state = () => ({
   boundary: {
     top: 0,
@@ -18,6 +37,12 @@ export const mutations = {
     for (const name of appNames) {
       let w = 1080,
         h = 700;
+
+      if (name in widths) {
+        w = widths[name].w;
+        h = widths[name].h;
+      }
+
       state.windows[name] = {
         opened: false,
         minimized: false,

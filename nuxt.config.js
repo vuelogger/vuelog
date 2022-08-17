@@ -57,6 +57,10 @@ export default {
         name: "twitter:card",
         content: "summary_large_image",
       },
+      {
+        name: "google-site-verification",
+        content: "cY-rrjGxRoSE5FAkvmVQTJEzozBaBGRb8S2Rer6qtOQ",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },

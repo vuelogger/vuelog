@@ -5,17 +5,18 @@
 @import "base/mixins.scss";
 @import "base/base.scss";
 
-@import "components/desktop/window.scss";
-@import "components/desktop/windows/post.scss";
-@import "components/desktop/windows/post/category.scss";
-@import "components/desktop/windows/post/content.scss";
-@import "components/desktop/windows/post/list.scss";
-
 @import "components/desktop/dock.scss";
 @import "components/desktop/header.scss";
 @import "components/desktop/header/icon.scss";
 @import "components/desktop/header/iconlist.scss";
 @import "components/desktop/header/icons/music_player.scss";
+
+@import "components/desktop/window.scss";
+@import "components/desktop/windows/kakaotalk.scss";
+@import "components/desktop/windows/post.scss";
+@import "components/desktop/windows/post/category.scss";
+@import "components/desktop/windows/post/content.scss";
+@import "components/desktop/windows/post/list.scss";
 
 @import "components/mobile/header.scss";
 

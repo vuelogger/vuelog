@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img class="bg" src="~/assets/images/bg.jpeg" />
+    <img class="bg" src="~/assets/images/bg.jpg" />
 
     <DesktopDock />
     <DesktopHeader />
