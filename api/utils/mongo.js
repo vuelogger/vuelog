@@ -110,7 +110,6 @@ class MongoDB {
         param.name = "VueLoger";
         param.admin = true;
       }
-      await this.db.collection("chats").deleteMany();
       await this.db.collection("chats").insertOne(param);
     });
   }

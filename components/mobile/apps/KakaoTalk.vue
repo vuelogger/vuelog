@@ -99,7 +99,7 @@
         ></textarea>
         <button
           @click="send"
-          :class="{ active: message.length > 0 }"
+          :class="{ active: message.length > 0 && reqAvailable }"
           class="message__send"
         >
           Send
@@ -118,6 +118,7 @@ export default {
       maxLength: 100,
       username: "",
       message: "",
+      reqAvailable: true,
       snsItems: {
         twitter: "https://twitter.com/BlogWealthy",
         // instagram: "#",
@@ -139,7 +140,8 @@ export default {
       }
     },
     async send() {
-      if (this.username && this.message) {
+      if (this.username && this.message && this.reqAvailable) {
+        this.reqAvailable = false;
         const param = {
           name: this.username,
           message: this.message,
@@ -149,6 +151,10 @@ export default {
         await this.$store.dispatch("chat/sendMsg", param);
         await this.$store.dispatch("chat/getMsgs");
         this.scrollToBottom();
+
+        setTimeout(() => {
+          this.reqAvailable = true;
+        }, 10 * 60 * 1000);
       }
     },
   },
