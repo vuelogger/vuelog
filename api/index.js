@@ -23,13 +23,13 @@ const notionLimiter = rateLimit({
 
 const msgLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
-  max: 1,
+  max: 3,
   delayMs: 1000,
   standardHeaders: true,
   legacyHeaders: false,
   handler(req, res) {
     res.status(this.statusCode).json({
-      message: "10분에 1번 요청가능합니다",
+      message: "10분에 3번 요청가능합니다",
     });
   },
 });

@@ -43,7 +43,7 @@
           alt="notice"
         />
         <span class="notice__text">
-          10분에 한 번, 100자까지 쓸 수 있습니다.
+          10분에 3번, 100자까지 쓸 수 있습니다.
         </span>
       </div>
       <div class="chats" v-if="messages.length > 0">
@@ -118,7 +118,7 @@ export default {
       maxLength: 100,
       username: "",
       message: "",
-      reqAvailable: true,
+      reqCount: 0,
       snsItems: {
         twitter: "https://twitter.com/BlogWealthy",
         // instagram: "#",
@@ -131,6 +131,9 @@ export default {
     messages() {
       return this.$store.state.chat.messages;
     },
+    reqAvailable() {
+      return this.reqCount < 3;
+    },
   },
   methods: {
     scrollToBottom() {
@@ -141,7 +144,10 @@ export default {
     },
     async send() {
       if (this.username && this.message && this.reqAvailable) {
-        this.reqAvailable = false;
+        this.reqCount += 1;
+        setTimeout(() => {
+          this.reqCount = 0;
+        }, 10 * 60 * 1000);
         const param = {
           name: this.username,
           message: this.message,
@@ -151,10 +157,6 @@ export default {
         await this.$store.dispatch("chat/sendMsg", param);
         await this.$store.dispatch("chat/getMsgs");
         this.scrollToBottom();
-
-        setTimeout(() => {
-          this.reqAvailable = true;
-        }, 10 * 60 * 1000);
       }
     },
   },
