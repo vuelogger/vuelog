@@ -1,15 +1,16 @@
 import rateLimit from "express-rate-limit";
-import { NotionDB } from "./utils/mongo";
+import { MongoDB } from "./utils/mongo";
 
 console.log("Server Initializing...");
 
 // TODO: CORS 적용하기
 const cors = require("cors"); //use this
 const app = require("express")();
+const bodyParser = require("body-parser");
 
-const limiter = rateLimit({
+const notionLimiter = rateLimit({
   windowMs: 3 * 1000, // 3초 기다림
-  max: 8, // 5번까지만
+  max: 8, // 8번까지만
   delayMs: 500, // 0.5초에 한번 요청
   standardHeaders: true,
   legacyHeaders: false,
@@ -20,11 +21,28 @@ const limiter = rateLimit({
   },
 });
 
-app.use(limiter);
+const msgLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 1,
+  delayMs: 1000,
+  standardHeaders: true,
+  legacyHeaders: false,
+  handler(req, res) {
+    res.status(this.statusCode).json({
+      message: "10분에 1번 요청가능합니다",
+    });
+  },
+});
+
+app.use(notionLimiter);
 app.use(cors());
+// parse application/json
+app.use(bodyParser.json());
+app.set("trust proxy", 1);
+app.get("/ip", (request, response) => response.send(request.ip));
 
 app.get("/fetch", async (req, res) => {
-  const db = new NotionDB();
+  const db = new MongoDB();
 
   const result = await db.fetch(
     req.query.category,
@@ -37,7 +55,7 @@ app.get("/fetch", async (req, res) => {
 });
 
 app.get("/posts", async (req, res) => {
-  const db = new NotionDB();
+  const db = new MongoDB();
 
   const result = await db.getPosts(
     req.query.category,
@@ -49,26 +67,37 @@ app.get("/posts", async (req, res) => {
 });
 
 app.get("/post", async (req, res) => {
-  const db = new NotionDB();
+  const db = new MongoDB();
   const result = await db.getPost(req.query.id);
 
   res.json(result);
 });
 
 app.get("/categories", async (req, res) => {
-  const db = new NotionDB();
+  const db = new MongoDB();
   const result = await db.getCategories();
 
   res.json(result);
 });
 
 app.get("/musics", async (req, res) => {
-  const db = new NotionDB();
+  const db = new MongoDB();
   const result = await db.getMusics();
 
   res.json(result);
 });
 
-console.log("Server Initialized");
+app.post("/sendMsg", msgLimiter, async (req, res) => {
+  const db = new MongoDB();
+  await db.sendMsg(req.body);
+  res.status(200).send();
+});
+
+app.get("/getMsgs", async (req, res) => {
+  const db = new MongoDB();
+
+  const result = await db.getMsgs();
+  res.json(result);
+});
 
 module.exports = app;

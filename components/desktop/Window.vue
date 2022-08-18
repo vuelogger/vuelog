@@ -13,10 +13,9 @@
 import WindowBtns from "~/components/desktop/WindowBtns.vue";
 import Post from "@/components/desktop/windows/Post";
 import KakaoTalk from "~/components/mobile/apps/KakaoTalk";
-import Diary from "~/components/mobile/apps/Diary";
 import About from "~/components/mobile/apps/About";
 export default {
-  components: { WindowBtns, Post, KakaoTalk, Diary, About },
+  components: { WindowBtns, Post, KakaoTalk, About },
   data() {
     return {
       backup: {},

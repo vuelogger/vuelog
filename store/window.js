@@ -11,10 +11,6 @@ const widths = {
     w: 400,
     h: 650,
   },
-  Diary: {
-    w: 1080,
-    h: 700,
-  },
 };
 
 export const state = () => ({

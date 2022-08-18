@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb";
 
-class NotionDB {
+class MongoDB {
   async connect() {
     this.client = new MongoClient(process.env.MONGODB_URI, {});
     await this.client.connect();
@@ -103,6 +103,30 @@ class NotionDB {
       return result;
     });
   }
+
+  async sendMsg(param) {
+    return await this.run(async () => {
+      if (process.env.NODE_ENV !== "production") {
+        param.name = "VueLoger";
+        param.admin = true;
+      }
+      await this.db.collection("chats").deleteMany();
+      await this.db.collection("chats").insertOne(param);
+    });
+  }
+  async getMsgs() {
+    return await this.run(async () => {
+      const cursor = await this.db
+        .collection("chats")
+        .find()
+        .project({ _id: 0 });
+
+      const result = await cursor.toArray();
+      await cursor.close();
+
+      return result;
+    });
+  }
 }
 
-export { NotionDB };
+export { MongoDB };
