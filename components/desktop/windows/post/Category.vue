@@ -9,13 +9,7 @@
         :class="{ active: c.category === category }"
         @click="changeCategory(c.category)"
       >
-        <img
-          class="item__img"
-          :src="
-            require(`~/assets/images/desktop/windows/post/${c.oriCategory}.png`)
-          "
-          alt=""
-        />
+        <img class="item__img" :src="loadImg(c.oriCategory)" />
         <span class="item__category">{{ c.oriCategory }}</span>
         <span class="item__count">{{ c.count }}</span>
       </button>
@@ -34,6 +28,15 @@ export default {
     ...mapState("window", ["categoryWidth", "listWidth"]),
   },
   methods: {
+    loadImg(name) {
+      let result = "";
+      try {
+        result = require(`~/assets/images/desktop/windows/post/${name}.png`);
+      } catch {
+        result = "";
+      }
+      return result;
+    },
     async changeCategory(category) {
       if (this.listWidth <= 10) {
         this.$store.commit("window/setListWidth", 350);
