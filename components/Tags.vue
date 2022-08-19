@@ -1,5 +1,5 @@
 <template>
-  <div class="tag">
+  <div class="tag" v-if="tags.length > 0">
     <img class="tag__img" src="~/assets/images/ico/tag.svg" alt="tag" />
     <p class="tag__item" v-for="tag of tags" :key="tag">{{ tag }}</p>
   </div>
