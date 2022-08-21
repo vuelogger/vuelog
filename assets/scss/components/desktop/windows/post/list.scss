@@ -44,7 +44,7 @@
     .item {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       width: 100%;
       padding: 1.5rem 1rem 1.5rem 2.5rem;
       border-radius: 8px;
@@ -122,7 +122,8 @@
         }
       }
       &__image {
-        flex: 0 0 35%;
+        flex: 0 0 30%;
+        max-height: 12rem;
 
         img {
           width: 100%;

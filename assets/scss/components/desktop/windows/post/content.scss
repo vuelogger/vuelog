@@ -40,6 +40,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        filter: brightness(0.5) blur(3px);
       }
       &__text {
         display: flex;
@@ -207,7 +208,7 @@
 
       .code-block {
         position: relative;
-        background-color: #444;
+        background-color: #1e1e1e;
         border-radius: 4px;
         overflow: hidden;
         margin: 1.5rem 0;
@@ -218,6 +219,7 @@
           display: inline-block;
           padding: 0.3em 0.6em;
           background-color: #676767;
+          font-size: 1.2rem;
 
           &.javascript {
             background-color: #eded75;
@@ -238,6 +240,8 @@
           margin-left: 1rem;
           font-size: 1.2rem;
           color: #acacac;
+          margin-left: auto;
+          margin-right: 1rem;
         }
 
         &__content {
