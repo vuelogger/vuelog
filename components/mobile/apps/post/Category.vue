@@ -12,9 +12,7 @@
       >
         <img
           class="item__img"
-          :src="
-            require(`~/assets/images/desktop/windows/post/${c.oriCategory}.png`)
-          "
+          :src="require(`~/assets/images/apps/post/${c.oriCategory}.png`)"
           alt=""
         />
         <span class="item__category">{{ c.oriCategory }}</span>

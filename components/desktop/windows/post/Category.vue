@@ -31,7 +31,7 @@ export default {
     loadImg(name) {
       let result = "";
       try {
-        result = require(`~/assets/images/desktop/windows/post/${name}.png`);
+        result = require(`~/assets/images/apps/post/${name}.png`);
       } catch {
         result = "";
       }
