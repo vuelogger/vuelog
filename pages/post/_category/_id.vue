@@ -32,17 +32,17 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: post.description,
+          content: this.post.description,
         },
         {
           hid: "og:description",
           property: "og:description",
-          content: post.description,
+          content: this.post.description,
         },
         {
           hid: "twitter:description",
           name: "twitter:description",
-          content: post.description,
+          content: this.post.description,
         },
         {
           hid: "twitter:card",
@@ -57,21 +57,15 @@ export default {
       url: "",
     };
   },
-  computed: {
-    post() {
-      return this.$store.state.notion.post;
-    },
-  },
   async asyncData({ route, store }) {
     const params = route.params || {};
     let category = params ? params.category : "";
     let postId = params ? params.id : null;
 
     const url = process.env.VERCEL_URL + "/post/" + category + "/" + postId;
-
     await store.dispatch("notion/getPost", postId);
 
-    return { url };
+    return { url, post: store.state.notion.post };
   },
 };
 </script>
