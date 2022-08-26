@@ -5,7 +5,7 @@
     <DesktopDock />
     <DesktopHeader />
     <DesktopWindowList />
-    <!-- <Nuxt /> -->
+    <Nuxt />
 
     <Loading :progress="loading.progress" v-if="!loading.isDone" />
   </div>

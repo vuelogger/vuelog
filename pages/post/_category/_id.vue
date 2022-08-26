@@ -7,13 +7,12 @@ export default {
   head() {
     return {
       meta: [
-        { hid: "og:title", property: "og:title", content: this.post.title },
+        { hid: "test", property: "test", content: "Test Title" },
         {
           hid: "twitter:title",
           name: "twitter:title",
           content: this.post.title,
         },
-        { hid: "og:type", property: "og:type", content: "website" },
         {
           hid: "og:image",
           property: "og:image",
