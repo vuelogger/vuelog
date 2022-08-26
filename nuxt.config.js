@@ -28,6 +28,11 @@ export default {
         content: "/logo.png",
       },
       {
+        hid: "og:locale",
+        property: "og:locale",
+        content: "ko_KR",
+      },
+      {
         hid: "twitter:image",
         name: "twitter:image",
         content: "/logo.png",

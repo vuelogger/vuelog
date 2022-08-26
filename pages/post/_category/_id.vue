@@ -14,6 +14,11 @@ export default {
           content: this.post.title,
         },
         {
+          hid: "og:title",
+          name: "og:title",
+          content: this.post.title,
+        },
+        {
           hid: "og:image",
           property: "og:image",
           content: this.post.cover,
