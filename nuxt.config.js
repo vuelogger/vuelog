@@ -92,21 +92,8 @@ export default {
   buildModules: [
     "@nuxtjs/moment",
     "@nuxtjs/device",
-    [
-      "nuxt-compress",
-      {
-        gzip: {
-          threshold: 8192,
-        },
-        brotli: {
-          threshold: 8192,
-        },
-      },
-    ],
+    "@nuxtjs/google-analytics",
   ],
-  moment: {
-    locales: ["ko"],
-  },
 
   plugins: ["~/plugins/axios.js", "~/plugins/utils.js"],
 
@@ -184,5 +171,12 @@ export default {
       // number of seconds to store this page in cache
       ttl: 60,
     },
+  },
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
+
+  moment: {
+    locales: ["ko"],
   },
 };

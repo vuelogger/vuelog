@@ -29,6 +29,6 @@
   },
   "devDependencies": {
     "@nuxtjs/device": "^2.1.0",
-    "nuxt-compress": "^5.0.0"
+    "@nuxtjs/google-analytics": "^2.4.0"
   }
 }
