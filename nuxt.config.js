@@ -117,18 +117,21 @@ export default {
       const route = [];
 
       for (const c of res.data) {
-        const result = await axios.get("https://vuelog.dev/api/posts", {
-          params: {
-            category: c.category,
-            pageSize: 10000,
-            currPage: 0,
-          },
-        });
-        const category = c.category === "" ? "all" : c.category;
+        // all은 없앤다.
+        if (c.category) {
+          const result = await axios.get("https://vuelog.dev/api/posts", {
+            params: {
+              category: c.category,
+              pageSize: 10000,
+              currPage: 0,
+            },
+          });
+          const category = c.category === "" ? "all" : c.category;
 
-        route.push("/post/" + category);
-        for (const p of result.data.data) {
-          route.push("/post/" + category + "/" + p.id);
+          route.push("/post/" + category);
+          for (const p of result.data.data) {
+            route.push("/post/" + category + "/" + p.id);
+          }
         }
       }
       return route;
