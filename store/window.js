@@ -1,8 +1,4 @@
 const widths = {
-  About: {
-    w: 1080,
-    h: 700,
-  },
   Post: {
     w: 1080,
     h: 700,

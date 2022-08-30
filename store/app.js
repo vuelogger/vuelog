@@ -1,5 +1,5 @@
 export const state = () => ({
-  names: ["About", "Post", "KakaoTalk"],
+  names: ["Post", "KakaoTalk"],
 
   loadedNames: [], // 현재 로드되었는지 체크 (값이 들어가면 계속 들고 있음)
   openedName: "", // 현재 사용자에게 보여주는 앱

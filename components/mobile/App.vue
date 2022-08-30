@@ -20,10 +20,9 @@
 <script>
 import Post from "~/components/mobile/apps/Post";
 import KakaoTalk from "~/components/mobile/apps/KakaoTalk";
-import About from "~/components/mobile/apps/About";
 
 export default {
-  components: { Post, KakaoTalk, About },
+  components: { Post, KakaoTalk },
   props: ["name"],
   data() {
     return {
