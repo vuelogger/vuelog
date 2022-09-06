@@ -11,8 +11,9 @@
         @click="clickCategory(c.oriCategory, c.category)"
       >
         <img
+          v-if="loadImg(c.oriCategory)"
           class="item__img"
-          :src="require(`~/assets/images/apps/post/${c.oriCategory}.png`)"
+          :src="loadImg(c.oriCategory)"
           alt=""
         />
         <span class="item__category">{{ c.oriCategory }}</span>
@@ -33,6 +34,13 @@ export default {
     ...mapState("notion", ["categories", "category", "pageSize", "posts"]),
   },
   methods: {
+    loadImg(category) {
+      try {
+        return require(`~/assets/images/apps/post/${category}.png`);
+      } catch {
+        return "";
+      }
+    },
     clickCategory(oriCategory, category) {
       this.$emit("clickCategory", { oriCategory, category });
     },
