@@ -78,6 +78,15 @@ export default {
         href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
       },
     ],
+    script: [
+      // Google Analytics Code
+      {
+        src: "https://www.googletagmanager.com/gtag/js?id=G-8H27EFJLW2",
+        async: true,
+      },
+      // Import analitics.js file
+      { src: "/js/analytics.js" },
+    ],
   },
 
   serverMiddleware: [{ path: "/api", handler: __dirname + "/api/index.js" }],
@@ -103,7 +112,6 @@ export default {
     "nuxt-ssr-cache",
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
-    "@nuxtjs/google-gtag",
   ],
 
   sitemap: {
@@ -176,10 +184,6 @@ export default {
       // number of seconds to store this page in cache
       ttl: 60,
     },
-  },
-
-  "google-gtag": {
-    id: "G-8H27EFJLW2",
   },
 
   moment: {
