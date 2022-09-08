@@ -66,6 +66,10 @@ export default {
         name: "google-site-verification",
         content: "cY-rrjGxRoSE5FAkvmVQTJEzozBaBGRb8S2Rer6qtOQ",
       },
+      {
+        name: "naver-site-verification",
+        content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
