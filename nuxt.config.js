@@ -107,7 +107,9 @@ export default {
     "nuxt-ssr-cache",
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
+    "@nuxtjs/google-gtag",
   ],
+
   sitemap: {
     defaults: {
       changefreq: "daily",
@@ -179,8 +181,9 @@ export default {
       ttl: 60,
     },
   },
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+
+  "google-gtag": {
+    id: "G-8H27EFJLW2",
   },
 
   moment: {
