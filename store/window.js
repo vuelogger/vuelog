@@ -3,7 +3,7 @@ const widths = {
     w: 1080,
     h: 700,
   },
-  KakaoTalk: {
+  GuestBook: {
     w: 400,
     h: 650,
   },

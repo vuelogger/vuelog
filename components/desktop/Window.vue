@@ -12,9 +12,9 @@
 <script>
 import WindowBtns from "~/components/desktop/WindowBtns.vue";
 import Post from "@/components/desktop/windows/Post";
-import KakaoTalk from "~/components/mobile/apps/KakaoTalk";
+import GuestBook from "~/components/mobile/apps/GuestBook";
 export default {
-  components: { WindowBtns, Post, KakaoTalk },
+  components: { WindowBtns, Post, GuestBook },
   data() {
     return {
       backup: {},

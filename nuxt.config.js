@@ -84,7 +84,6 @@ export default {
         src: "https://www.googletagmanager.com/gtag/js?id=G-8H27EFJLW2",
         async: true,
       },
-      // Import analitics.js file
       { src: "/js/analytics.js" },
     ],
   },

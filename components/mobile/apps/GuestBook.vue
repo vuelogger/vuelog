@@ -1,6 +1,6 @@
 <template>
-  <div class="kakaotalk">
-    <header class="kakaotalk__head">
+  <div class="guestbook">
+    <header class="guestbook__head">
       <img class="profile-img" src="~/assets/images/logo.png" />
       <div class="info">
         <strong class="info__name">VueLog</strong>
@@ -35,7 +35,7 @@
         </div>
       </div>
     </header>
-    <main class="kakaotalk__body" ref="body">
+    <main class="guestbook__body" ref="body">
       <div class="notice">
         <img
           class="notice__img"
@@ -57,7 +57,7 @@
           <img
             class="profile"
             v-else
-            src="~/assets/images/apps/kakaotalk/anonymous.png"
+            src="~/assets/images/apps/guestbook/anonymous.png"
           />
           <div class="text">
             <strong class="name">{{ c.name }}</strong>
@@ -72,7 +72,7 @@
         <div class="loader"></div>
       </div>
     </main>
-    <footer class="kakaotalk__footer">
+    <footer class="guestbook__footer">
       <div class="info">
         <label for="name">Name : </label>
         <input
