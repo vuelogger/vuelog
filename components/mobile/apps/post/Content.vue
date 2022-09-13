@@ -3,7 +3,11 @@
     <template v-if="post">
       <h1 class="title">{{ post.title }}</h1>
 
-      <Tags fontSize="1.6rem" :tags="post.tags" />
+      <div class="info">
+        <Tags fontSize="1.6rem" :tags="post.tags" />
+
+        <CopyLink />
+      </div>
 
       <p class="created">
         {{ $moment(post.created).format("LL") }}

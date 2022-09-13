@@ -74,14 +74,10 @@
     </main>
     <footer class="guestbook__footer">
       <div class="info">
-        <label for="name">Name : </label>
-        <input
-          class="info__name"
-          maxlength="15"
-          name="name"
-          type="text"
-          v-model="username"
-        />
+        <p class="info__label">Name :</p>
+        <div class="info__name">
+          <input maxlength="15" v-model="username" />
+        </div>
         <div class="info__count">
           <strong class="curr">{{ message.length }}</strong>
           <p class="div">/</p>

@@ -3,7 +3,9 @@
     class="post-content"
     :style="{ width: `calc(100% - ${categoryWidth}px - ${listWidth}px)` }"
   >
-    <header class="post-content__header"></header>
+    <header class="post-content__header">
+      <CopyLink />
+    </header>
     <article class="post-content__body">
       <template v-if="post">
         <div class="post-info">
