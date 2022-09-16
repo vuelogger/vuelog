@@ -33,12 +33,6 @@ export default {
           href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
         },
       ],
-      script: [
-        {
-          async: true,
-          src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
-        },
-      ],
     };
   },
   computed: {
