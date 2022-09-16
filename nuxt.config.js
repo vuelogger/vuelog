@@ -1,8 +1,35 @@
 const axios = require("axios");
+const routes = async () => {
+  const res = await axios.get("https://vuelog.dev/api/categories");
+
+  const route = [];
+
+  for (const c of res.data) {
+    // all은 없앤다.
+    if (c.category) {
+      const result = await axios.get("https://vuelog.dev/api/posts", {
+        params: {
+          category: c.category,
+          pageSize: 10000,
+          currPage: 0,
+        },
+      });
+      const category = c.category === "" ? "all" : c.category;
+
+      route.push("/post/" + category);
+      for (const p of result.data.data) {
+        route.push("/post/" + category + "/" + p.id);
+      }
+    }
+  }
+  return route;
+};
+
 export default {
   server: {
     host: "0", // default: localhost
   },
+  loading: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -74,13 +101,7 @@ export default {
         content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
       },
     ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
-      },
-    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     script: [
       // Google Analytics Code
       {
@@ -103,18 +124,17 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: ["@nuxtjs/moment", "@nuxtjs/device"],
-
   plugins: ["~/plugins/axios.js", "~/plugins/utils.js"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/content
-    "nuxt-ssr-cache",
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
   ],
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: ["@nuxtjs/moment", "@nuxtjs/device"],
 
   sitemap: {
     defaults: {
@@ -123,31 +143,7 @@ export default {
       lastmod: new Date(),
     },
     //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
-    routes: async () => {
-      const res = await axios.get("https://vuelog.dev/api/categories");
-
-      const route = [];
-
-      for (const c of res.data) {
-        // all은 없앤다.
-        if (c.category) {
-          const result = await axios.get("https://vuelog.dev/api/posts", {
-            params: {
-              category: c.category,
-              pageSize: 10000,
-              currPage: 0,
-            },
-          });
-          const category = c.category === "" ? "all" : c.category;
-
-          route.push("/post/" + category);
-          for (const p of result.data.data) {
-            route.push("/post/" + category + "/" + p.id);
-          }
-        }
-      }
-      return route;
-    },
+    routes,
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -172,21 +168,6 @@ export default {
   // },
 
   // nuxt-ssr-cache
-
-  cache: {
-    useHostPrefix: false,
-    pages: ["/"],
-    store: {
-      type: "memory",
-      // maximum number of pages to store in memory
-      // if limit is reached, least recently used page
-      // is removed.
-      max: 100,
-
-      // number of seconds to store this page in cache
-      ttl: 60,
-    },
-  },
 
   moment: {
     locales: ["ko"],

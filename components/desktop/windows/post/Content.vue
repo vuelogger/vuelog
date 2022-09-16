@@ -36,5 +36,21 @@ export default {
     ...mapState("notion", ["post"]),
     ...mapState("window", ["categoryWidth", "listWidth"]),
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
+        },
+      ],
+      script: [
+        {
+          async: true,
+          src: "https://cpwebassets.codepen.io/assets/embed/ei.js",
+        },
+      ],
+    };
+  },
 };
 </script>

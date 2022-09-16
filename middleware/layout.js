@@ -7,7 +7,7 @@ export default ({ route, $device, store }) => {
   } else if ($device.isMobileOrTablet) {
     layout = "mobile";
   } else {
-    // home에서는 아무것도 띄우지 않는다.
+    // post에서는 Post를 기본적으로 띄운다.
     if (route.path.startsWith("/post")) {
       store.commit("window/setOpened", { name: "Post", opened: true });
     }

@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="loading-page">
     <img
       class="loading-page__image"
