@@ -4,7 +4,7 @@
     :style="{ width: `calc(100% - ${categoryWidth}px - ${listWidth}px)` }"
   >
     <header class="post-content__header">
-      <CopyLink />
+      <ShareBtn :postFix="`post/${post.category}/${post.id}`" />
     </header>
     <article class="post-content__body">
       <template v-if="post">
@@ -19,7 +19,7 @@
           </div>
         </div>
         <Tags :tags="post.tags" />
-        <div class="content" v-html="post.body"></div>
+        <div class="html-parsed-content" v-html="post.body"></div>
       </template>
       <div v-else class="loader-wrapper">
         <div class="loader"></div>

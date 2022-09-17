@@ -6,7 +6,7 @@
       <div class="info">
         <Tags fontSize="1.6rem" :tags="post.tags" />
 
-        <CopyLink />
+        <ShareBtn :postFix="`post/${post.category}/${post.id}`" />
       </div>
 
       <p class="created">
@@ -14,7 +14,7 @@
       </p>
       <img class="cover" :src="post.cover" v-if="post.cover" />
 
-      <div class="content" v-html="post.body"></div>
+      <div class="html-parsed-content mobile" v-html="post.body"></div>
     </template>
     <div v-else class="loader-wrapper">
       <div class="loader"></div>

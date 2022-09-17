@@ -1,7 +1,7 @@
 <template>
-  <button class="copylink" @click="copyLink" :class="{ mobile: isMobile }">
-    <img src="~/assets/images/apps/post/linkcopy.svg" alt="linkcopy" />
-    <p class="copylink__msg" v-show="isCopied">Copied</p>
+  <button class="share-btn" @click="copyLink" :class="{ mobile: isMobile }">
+    <img src="~/assets/images/ico/share.png" />
+    <p class="share-btn__msg" v-show="isCopied">Copied</p>
   </button>
 </template>
 
@@ -11,6 +11,10 @@ export default {
     isMobile: {
       type: Boolean,
       default: true,
+    },
+    postFix: {
+      type: String,
+      default: "",
     },
   },
   data() {
@@ -26,7 +30,7 @@ export default {
         document.createElement("input")
       );
       // input의 값에 현재 사이트 주소를 넣는다.
-      tempTag.value = window.document.location.href;
+      tempTag.value = window.document.location.href + this.postFix;
       // input에 초점을 맞춘다.
       tempTag.select();
       // input 내용을 복사한다.
@@ -34,9 +38,10 @@ export default {
       // 만들었던 태그를 삭제한다.
       tempTag.parentNode.removeChild(tempTag);
 
-      const self = this;
+      // copy란 글자가 잠시 나타나다 사라지게 하기
+      const _this = this;
       setTimeout(() => {
-        self.isCopied = false;
+        _this.isCopied = false;
       }, 1000);
     },
   },
@@ -53,7 +58,7 @@ export default {
   }
 }
 
-.copylink {
+.share-btn {
   position: relative;
   filter: brightness(0.7);
   cursor: pointer;
