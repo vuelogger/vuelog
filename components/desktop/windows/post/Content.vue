@@ -4,7 +4,7 @@
     :style="{ width: `calc(100% - ${categoryWidth}px - ${listWidth}px)` }"
   >
     <header class="post-content__header">
-      <ShareBtn :postFix="`post/${post.category}/${post.id}`" />
+      <ShareBtn v-if="post" :postFix="`post/${post.category}/${post.id}`" />
     </header>
     <article class="post-content__body">
       <template v-if="post">

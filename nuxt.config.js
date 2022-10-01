@@ -1,4 +1,5 @@
 const axios = require("axios");
+
 const routes = async () => {
   const res = await axios.get("https://vuelog.dev/api/categories");
 
@@ -119,7 +120,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ["~/assets/scss/index.scss"],
+  // css: ["~/assets/scss/index.scss"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -1,7 +1,7 @@
 <template>
   <button class="share-btn" @click="copyLink" :class="{ mobile: isMobile }">
     <img src="~/assets/images/ico/share.png" />
-    <p class="share-btn__msg" v-show="isCopied">Copied</p>
+    <p class="share-btn__msg" v-show="isCopied">Link Copied</p>
   </button>
 </template>
 
