@@ -38,8 +38,6 @@ app.use(notionLimiter);
 app.use(cors());
 // parse application/json
 app.use(bodyParser.json());
-app.set("trust proxy", 1);
-app.get("/ip", (request, response) => response.send(request.ip));
 
 app.get("/fetch", async (req, res) => {
   const db = new MongoDB();

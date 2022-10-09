@@ -4,28 +4,3 @@
 @import "base/keyframes.scss";
 @import "base/mixins.scss";
 @import "base/base.scss";
-
-@import "components/desktop/dock.scss";
-@import "components/desktop/header.scss";
-@import "components/desktop/header/icon.scss";
-@import "components/desktop/header/iconlist.scss";
-@import "components/desktop/header/icons/music_player.scss";
-
-@import "components/desktop/window.scss";
-@import "components/desktop/windows/guestbook.scss";
-@import "components/desktop/windows/post.scss";
-@import "components/desktop/windows/post/category.scss";
-@import "components/desktop/windows/post/content.scss";
-@import "components/desktop/windows/post/list.scss";
-
-@import "components/mobile/header.scss";
-
-@import "components/mobile/app_list.scss";
-@import "components/mobile/app.scss";
-@import "components/mobile/apps/post.scss";
-@import "components/mobile/apps/post/title.scss";
-@import "components/mobile/apps/post/category.scss";
-@import "components/mobile/apps/post/list.scss";
-@import "components/mobile/apps/post/content.scss";
-
-@import "html_parsed_content.scss";

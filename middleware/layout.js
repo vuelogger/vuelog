@@ -6,11 +6,6 @@ export default ({ route, $device, store }) => {
     // ssr에서는 error.vue가 먹히지 않음
   } else if ($device.isMobileOrTablet) {
     layout = "mobile";
-  } else {
-    // post에서는 Post를 기본적으로 띄운다.
-    if (route.path.startsWith("/post")) {
-      store.commit("window/setOpened", { name: "Post", opened: true });
-    }
   }
 
   route.matched[0].components.default.options.layout = layout;

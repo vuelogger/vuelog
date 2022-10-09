@@ -1,18 +1,12 @@
-$key-color: #8c88ff;
+$key-color: #262626;
 
 $header-height: 3rem;
-$header-bg-color: rgba(70, 70, 70, 0.3);
-$header-gap: 2rem;
 
-$dock-width: 40px;
+$dock-width: 4rem;
 $dock-pad: 6px;
-$dock-margin-left: 10px;
+$dock-margin-left: 1rem;
 
-$window-header-height: 50px;
-
-$post-head-bg-color: #444;
-$post-cate-bg-color: #333333c4;
-$post-bg-color: #333333;
+$app-head-height: 5rem;
 
 :export {
   headerHeight: $header-height;
@@ -21,5 +15,5 @@ $post-bg-color: #333333;
   dockPad: $dock-pad;
   dockMarginLeft: $dock-margin-left;
 
-  windowHeaderHeight: $window-header-height;
+  appHeadHeight: $app-head-height;
 }

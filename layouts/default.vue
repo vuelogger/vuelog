@@ -2,28 +2,10 @@
   <div class="container">
     <img class="bg" src="~/assets/images/bg.jpg" />
 
-    <DesktopDock />
-    <DesktopHeader />
-    <DesktopWindowList />
-    <Nuxt />
+    <Dock />
+    <Header />
+    <DesktopAppList />
 
-    <Loading :progress="loading.progress" v-if="!loading.isDone" />
+    <Nuxt />
   </div>
 </template>
-
-<script>
-import { mapState } from "vuex";
-export default {
-  computed: {
-    ...mapState(["loading"]),
-  },
-  beforeCreate() {
-    this.$store.dispatch("loadingStart");
-  },
-  mounted() {
-    if (this.$route.path == "/") {
-      this.$store.dispatch("loadingEnd");
-    }
-  },
-};
-</script>
