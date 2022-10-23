@@ -7,11 +7,13 @@ export const state = () => ({
   posts: [],
   page: 0,
   pageSize: 100,
+  categories: [],
 });
 
 export const mutations = {
   setPost: set("post"),
   setPosts: set("posts"),
+  setCategories: set("categories"),
 };
 
 export const actions = {

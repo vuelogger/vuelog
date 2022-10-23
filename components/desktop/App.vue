@@ -92,6 +92,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~/assets/scss/base/variable.scss";
+@import "~/assets/scss/base/mixins.scss";
 .app {
   position: fixed;
   overflow: hidden;
@@ -118,6 +119,7 @@ export default {
       height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
+      // @include scrollTheme();
     }
   }
 }
