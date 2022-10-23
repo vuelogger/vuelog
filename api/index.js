@@ -3,10 +3,9 @@ import { MongoDB } from "./utils/mongo";
 
 console.log("Server Initializing...");
 
-// TODO: CORS 적용하기
 const cors = require("cors"); //use this
 const app = require("express")();
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 
 const notionLimiter = rateLimit({
   windowMs: 3 * 1000, // 3초 기다림
@@ -36,20 +35,61 @@ const msgLimiter = rateLimit({
 
 app.use(notionLimiter);
 app.use(cors());
-// parse application/json
-app.use(bodyParser.json());
+// // parse application/json
+// app.use(bodyParser.json());
 
-app.get("/fetch", async (req, res) => {
+// app.get("/fetch", async (req, res) => {
+//   const db = new MongoDB();
+
+//   const result = await db.fetch(
+//     req.query.category,
+//     parseInt(req.query.pageSize),
+//     parseInt(req.query.currPage),
+//     req.query.postId
+//   );
+
+//   res.status(200).json(result);
+// });
+
+// app.get("/categories", async (req, res) => {
+//   const db = new MongoDB();
+//   const result = await db.getCategories();
+
+//   res.json(result);
+// });
+
+// app.get("/musics", async (req, res) => {
+//   const db = new MongoDB();
+//   const result = await db.getMusics();
+
+//   res.json(result);
+// });
+
+// app.post("/sendMsg", msgLimiter, async (req, res) => {
+//   const db = new MongoDB();
+//   await db.sendMsg(req.body);
+//   res.status(200).send();
+// });
+
+// app.get("/getMsgs", async (req, res) => {
+//   const db = new MongoDB();
+
+//   const result = await db.getMsgs();
+//   res.json(result);
+// });
+
+const db = new MongoDB();
+
+app.get("/post", async (req, res) => {
   const db = new MongoDB();
+  const result = await db.getPost(req.query.slug);
 
-  const result = await db.fetch(
-    req.query.category,
-    parseInt(req.query.pageSize),
-    parseInt(req.query.currPage),
-    req.query.postId
-  );
+  res.json(result);
+});
 
-  res.status(200).json(result);
+app.get("/categories", async (req, res) => {
+  const result = await db.getCategories();
+  res.json(result);
 });
 
 app.get("/posts", async (req, res) => {
@@ -58,43 +98,9 @@ app.get("/posts", async (req, res) => {
   const result = await db.getPosts(
     req.query.category,
     parseInt(req.query.pageSize),
-    parseInt(req.query.currPage)
+    parseInt(req.query.page)
   );
 
-  res.json(result);
-});
-
-app.get("/post", async (req, res) => {
-  const db = new MongoDB();
-  const result = await db.getPost(req.query.id);
-
-  res.json(result);
-});
-
-app.get("/categories", async (req, res) => {
-  const db = new MongoDB();
-  const result = await db.getCategories();
-
-  res.json(result);
-});
-
-app.get("/musics", async (req, res) => {
-  const db = new MongoDB();
-  const result = await db.getMusics();
-
-  res.json(result);
-});
-
-app.post("/sendMsg", msgLimiter, async (req, res) => {
-  const db = new MongoDB();
-  await db.sendMsg(req.body);
-  res.status(200).send();
-});
-
-app.get("/getMsgs", async (req, res) => {
-  const db = new MongoDB();
-
-  const result = await db.getMsgs();
   res.json(result);
 });
 

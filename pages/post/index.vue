@@ -10,6 +10,7 @@ export default {
 
     if (!postId && !category) {
       store.commit("apps/updatePostMode", "category");
+      store.commit("apps/open", "Post");
     }
 
     // const params = route.params || {};

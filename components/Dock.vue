@@ -107,11 +107,6 @@ export default {
       }
       this.updateTo(goalWidths);
     },
-    openWindow(name) {
-      if (!name.includes("공사중")) {
-        this.$store.dispatch("window/open", name);
-      }
-    },
   },
   created() {
     this.minWidth = this.$getScssLength("dockWidth");

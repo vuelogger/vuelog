@@ -24,31 +24,17 @@ class MongoDB {
     return result;
   }
 
-  async fetch(category, pageSize, currPage, postId) {
+  async getCategories() {
     return await this.run(async () => {
-      const postsCol = await this.db.collection("posts");
-
-      let cursor = postsCol
-        .find(category ? { category: { $eq: category } } : null)
-        .project({ _id: 0, body: 0 })
-        .skip(currPage * pageSize)
-        .limit(pageSize);
-
-      const posts = await cursor.toArray();
-      await cursor.close();
-
-      const id = postId ? postId : posts[0].id;
-      const post = await postsCol.findOne({ id });
-
-      cursor = await this.db
+      const cursor = await this.db
         .collection("categories")
         .find()
         .project({ _id: 0 });
 
-      const categories = await cursor.toArray();
+      const result = await cursor.toArray();
       await cursor.close();
 
-      return { posts, post, categories };
+      return result;
     });
   }
 
@@ -71,61 +57,89 @@ class MongoDB {
     });
   }
 
-  async getPost(id) {
+  async getPost(slug) {
     return await this.run(async () => {
-      const result = await this.db.collection("posts").findOne({ id });
-      return result;
-    });
-  }
-  async getCategories() {
-    return await this.run(async () => {
-      const cursor = await this.db
-        .collection("categories")
-        .find()
-        .project({ _id: 0 });
-
-      const result = await cursor.toArray();
-      await cursor.close();
-
-      return result;
+      return await this.db.collection("posts").findOne({ slug });
     });
   }
 
-  async getMusics() {
-    return await this.run(async () => {
-      const cursor = await this.db
-        .collection("musics")
-        .find()
-        .project({ _id: 0 });
-      const result = await cursor.toArray();
-      await cursor.close();
+  // async fetch(category, pageSize, currPage, postId) {
+  //   return await this.run(async () => {
+  //     const postsCol = await this.db.collection("posts");
 
-      return result;
-    });
-  }
+  //     let cursor = postsCol
+  //       .find(category ? { category: { $eq: category } } : null)
+  //       .project({ _id: 0, body: 0 })
+  //       .skip(currPage * pageSize)
+  //       .limit(pageSize);
 
-  async sendMsg(param) {
-    return await this.run(async () => {
-      if (process.env.NODE_ENV !== "production") {
-        param.name = "VueLoger";
-        param.admin = true;
-      }
-      await this.db.collection("chats").insertOne(param);
-    });
-  }
-  async getMsgs() {
-    return await this.run(async () => {
-      const cursor = await this.db
-        .collection("chats")
-        .find()
-        .project({ _id: 0 });
+  //     const posts = await cursor.toArray();
+  //     await cursor.close();
 
-      const result = await cursor.toArray();
-      await cursor.close();
+  //     const id = postId ? postId : posts[0].id;
+  //     const post = await postsCol.findOne({ id });
 
-      return result;
-    });
-  }
+  //     cursor = await this.db
+  //       .collection("categories")
+  //       .find()
+  //       .project({ _id: 0 });
+
+  //     const categories = await cursor.toArray();
+  //     await cursor.close();
+
+  //     return { posts, post, categories };
+  //   });
+  // }
+
+  // async getCategories() {
+  //   return await this.run(async () => {
+  //     const cursor = await this.db
+  //       .collection("categories")
+  //       .find()
+  //       .project({ _id: 0 });
+
+  //     const result = await cursor.toArray();
+  //     await cursor.close();
+
+  //     return result;
+  //   });
+  // }
+
+  // async getMusics() {
+  //   return await this.run(async () => {
+  //     const cursor = await this.db
+  //       .collection("musics")
+  //       .find()
+  //       .project({ _id: 0 });
+  //     const result = await cursor.toArray();
+  //     await cursor.close();
+
+  //     return result;
+  //   });
+  // }
+
+  // async sendMsg(param) {
+  //   return await this.run(async () => {
+  //     if (process.env.NODE_ENV !== "production") {
+  //       param.name = "VueLoger";
+  //       param.admin = true;
+  //     }
+  //     await this.db.collection("chats").insertOne(param);
+  //   });
+  // }
+  // async getMsgs() {
+  //   return await this.run(async () => {
+  //     const cursor = await this.db
+  //       .collection("chats")
+  //       .find()
+  //       .project({ _id: 0 });
+
+  //     const result = await cursor.toArray();
+  //     await cursor.close();
+
+  //     return result;
+  //   });
+  // }
 }
 
 export { MongoDB };

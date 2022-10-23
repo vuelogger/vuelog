@@ -1,3 +1,12 @@
+// 이 파일은 없앨 예정
+export const state = () => ({});
+
+export const mutations = {};
+
+export const actions = {
+  getCategories() {},
+};
+
 // export const state = () => ({
 //   posts: [],
 //   post: null,

@@ -46,7 +46,7 @@ export default {
     mouseMoveHandler(e) {
       if (!this.throttle) {
         this.throttle = setTimeout(() => {
-          const pt = { x: e.clientX, y: e.clientY };
+          const pt = { x: e.x, y: e.y };
 
           if (this.currMode === null) {
             const { name, mode } = this.$getTopWindow(pt);
@@ -66,14 +66,14 @@ export default {
     },
   },
   mounted() {
-    document.addEventListener("mousedown", this.mouseDownHandler);
-    document.addEventListener("mousemove", this.mouseMoveHandler);
-    document.addEventListener("mouseup", this.mouseUpHandler);
+    window.addEventListener("mousedown", this.mouseDownHandler);
+    window.addEventListener("mousemove", this.mouseMoveHandler);
+    window.addEventListener("mouseup", this.mouseUpHandler);
   },
   beforeDestroy() {
-    document.removeEventListener("mousedown", this.mouseDownHandler);
-    document.removeEventListener("mousemove", this.mouseMoveHandler);
-    document.removeEventListener("mouseup", this.mouseUpHandler);
+    window.removeEventListener("mousedown", this.mouseDownHandler);
+    window.removeEventListener("mousemove", this.mouseMoveHandler);
+    window.removeEventListener("mouseup", this.mouseUpHandler);
   },
 };
 </script>

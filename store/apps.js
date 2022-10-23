@@ -2,7 +2,7 @@ export const state = () => ({
   apps: {
     Post: {
       w: 800,
-      h: 500,
+      h: 800,
       minW: 500,
       minH: 400,
     },
@@ -13,6 +13,12 @@ export const state = () => ({
       minH: 100,
     },
     MusicPlayer: {
+      w: 300,
+      h: 200,
+      minW: 200,
+      minH: 100,
+    },
+    VueLog: {
       w: 300,
       h: 200,
       minW: 200,

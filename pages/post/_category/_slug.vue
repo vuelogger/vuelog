@@ -60,14 +60,21 @@ export default {
   async asyncData({ route, store }) {
     const params = await route?.params;
     const category = params?.category;
-    const postId = params?.id;
+    const slug = params?.slug;
 
-    if (postId) {
-      store.commit("apps/updatePostMode", "content");
+    let mode = "category";
+    if (slug) {
+      mode = "content";
+      // Fetch에 넣고 싶었으나 nuxtlink와 같이 사용할 때
+      // 이동 전의 $route.params 값을 가지고 있어서 api 불러오기 어렵다.
+      await store.dispatch("post/getPost", route.params.slug);
     } else if (category) {
-      store.commit("apps/updatePostMode", "list");
+      mode = "list";
+      await store.dispatch("post/getPosts", route.params.category);
     }
-    // TODO: post 를 open 상태로 만들기
+
+    store.commit("apps/updatePostMode", mode);
+    store.commit("apps/open", "Post");
   },
 };
 </script>

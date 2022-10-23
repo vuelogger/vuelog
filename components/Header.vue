@@ -20,10 +20,10 @@
   color: white;
 
   &__logo {
-    width: $header-height;
-    height: $header-height;
+    height: 50%;
     object-fit: contain;
-    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(1px 1px 1px lightblue)
+      drop-shadow(-1px -1px 3px lightblue) drop-shadow(-1px 1px 1px lightblue);
   }
 
   &__clock {

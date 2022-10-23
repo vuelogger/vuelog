@@ -100,14 +100,22 @@ export default {
       //   content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
       // },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        crossorigin: true,
+        href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css",
+      },
+    ],
+
     script: [
-      // // Google Analytics Code
-      // {
-      //   src: "https://www.googletagmanager.com/gtag/js?id=G-8H27EFJLW2",
-      //   async: true,
-      // },
-      // { src: "/js/analytics.js" },
+      // Google Analytics Code
+      {
+        src: "https://www.googletagmanager.com/gtag/js?id=G-8H27EFJLW2",
+        async: true,
+      },
+      { src: "/js/analytics.js" },
     ],
   },
 
@@ -123,7 +131,12 @@ export default {
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  plugins: ["~/plugins/axios.js", "~/plugins/utils.js", "~/plugins/window.js"],
+  plugins: [
+    "~/plugins/axios.js",
+    "~/plugins/utils.js",
+    "~/plugins/window.js",
+    "~/plugins/hill_animation.js",
+  ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -139,9 +152,9 @@ export default {
   //   //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
   //   routes,
   // },
-  // env: {
-  //   baseUrl: process.env.VERCEL_URL || "http://127.0.0.1:3000",
-  // },
+  env: {
+    baseUrl: process.env.VERCEL_URL || "http://127.0.0.1:3000",
+  },
   axios: {
     proxy: true,
     retry: {

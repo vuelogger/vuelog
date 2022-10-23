@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="post" style="background-color: white">
     <AppsPostCategory v-if="postMode === 'category'" />
     <AppsPostList v-else-if="postMode === 'list'" />
     <AppsPostContent v-else-if="postMode === 'content'" />
@@ -14,12 +14,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-main {
-  background-color: white;
-}
-a {
-  font-size: 3rem;
-}
-</style>

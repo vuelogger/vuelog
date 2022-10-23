@@ -19,12 +19,10 @@
 const getWindowMode = function (app) {
   const headHeight = app.$getScssLength("appHeadHeight");
   return function ({ x, y }, { l, r, t, b }, tolerance = 8) {
-    const edge = 8;
-
-    const isLeft = Math.abs(x - l) < edge;
-    const isRight = Math.abs(x - r) < edge;
-    const isTop = Math.abs(y - t) < edge;
-    const isBottom = Math.abs(y - b) < edge;
+    const isLeft = Math.abs(x - l) < tolerance;
+    const isRight = Math.abs(x - r) < tolerance; // 오른쪽은 좀 더 필요함
+    const isTop = Math.abs(y - t) < tolerance;
+    const isBottom = Math.abs(y - b) < tolerance;
 
     let result = null;
     // Window 안에 있는지
@@ -69,32 +67,33 @@ const getWindowMode = function (app) {
  */
 const getTopWindow = function (app) {
   const apps = app.store.state.apps.apps;
+  const _func = getWindowMode(app);
 
   return function (pt) {
     let maxZIndex = -1;
     let windowName = null;
     let windowMode = null;
 
-    const _func = getWindowMode(app);
-
     for (const name in apps) {
       const app = apps[name];
-      const rect = {
-        l: app.x,
-        t: app.y,
-        r: app.x + app.w,
-        b: app.y + app.h,
-      };
-
-      const mode = _func(pt, rect);
 
       // App이 열려 있고 최소화되어있지 않으며
       // 윈도우가 클릭한 곳 안에 있어야 된다.(not null)
       // 그리고 현재 최상단 z-index 보다 커야한다.
-      if (!app.minimized && app.opened && mode && maxZIndex < app.zIndex) {
-        windowName = name;
-        windowMode = mode;
-        maxZIndex = app.zIndex;
+      if (!app.minimized && app.opened) {
+        const rect = {
+          l: app.x,
+          t: app.y,
+          r: app.x + app.w,
+          b: app.y + app.h,
+        };
+        const mode = _func(pt, rect);
+
+        if (mode && maxZIndex < app.zIndex) {
+          windowName = name;
+          windowMode = mode;
+          maxZIndex = app.zIndex;
+        }
       }
     }
     return { name: windowName, mode: windowMode };
