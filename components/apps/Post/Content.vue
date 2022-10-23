@@ -4,7 +4,7 @@
       <div class="cover">
         <img :src="post.cover" />
       </div>
-      <p class="category">{{ post.category }}</p>
+      <p class="category">{{ post.oriCategory }}</p>
       <h1>{{ post.title }}</h1>
       <p class="created">
         생성일 : {{ $moment(post.createdAt).format("LLL") }}
@@ -22,7 +22,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("post", ["post"]),
+    ...mapState("post", ["post", "categories"]),
   },
   head() {
     return {
@@ -90,7 +90,7 @@ export default {
       width: 80%;
       font-size: 2.7em;
       position: relative;
-      line-height: normal;
+      line-height: 1.4;
       font-weight: bold;
       text-align: center;
       text-shadow: -2px 2px 5px gray, 2px -2px 2px black;
@@ -329,7 +329,8 @@ export default {
       line-height: 2;
       margin-bottom: 0.5rem;
     }
-    > img {
+
+    & > img {
       max-width: 100%;
       width: fit-content;
       margin: 0 auto;

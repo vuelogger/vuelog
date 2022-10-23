@@ -12,5 +12,8 @@ export default {
   computed: {
     ...mapState("apps", ["postMode"]),
   },
+  async fetch() {
+    await this.$store.dispatch("post/getCategories");
+  },
 };
 </script>

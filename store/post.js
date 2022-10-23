@@ -25,6 +25,7 @@ export const actions = {
       },
     });
     commit("setPost", result);
+    return result;
   },
   async getPosts({ state, commit }, category) {
     commit("setPosts", []);
@@ -36,5 +37,8 @@ export const actions = {
       },
     });
     commit("setPosts", result.data);
+  },
+  async getCategories({ commit }) {
+    commit("setCategories", await this.$axios.$get("/api/categories"));
   },
 };

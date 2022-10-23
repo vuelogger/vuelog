@@ -44,61 +44,61 @@ export default {
       },
       { name: "format-detection", content: "telephone=no" },
 
-      // { hid: "og:title", property: "og:title", content: "My VueLog" },
-      // {
-      //   hid: "twitter:title",
-      //   name: "twitter:title",
-      //   content: "My VueLog",
-      // },
-      // { hid: "og:type", property: "og:type", content: "website" },
-      // {
-      //   hid: "og:image",
-      //   property: "og:image",
-      //   content: "/logo.png",
-      // },
-      // {
-      //   hid: "og:locale",
-      //   property: "og:locale",
-      //   content: "ko_KR",
-      // },
-      // {
-      //   hid: "twitter:image",
-      //   name: "twitter:image",
-      //   content: "/logo.png",
-      // },
-      // {
-      //   hid: "og:url",
-      //   property: "og:url",
-      //   content: process.env.VERCEL_URL,
-      // },
-      // {
-      //   hid: "description",
-      //   name: "description",
-      //   content: "Welcome to my VueLog!!",
-      // },
-      // {
-      //   hid: "og:description",
-      //   property: "og:description",
-      //   content: "Welcome to my VueLog!!",
-      // },
-      // {
-      //   hid: "twitter:description",
-      //   name: "twitter:description",
-      //   content: "Welcome to my VueLog!!",
-      // },
-      // {
-      //   hid: "twitter:card",
-      //   name: "twitter:card",
-      //   content: "summary_large_image",
-      // },
-      // {
-      //   name: "google-site-verification",
-      //   content: "cY-rrjGxRoSE5FAkvmVQTJEzozBaBGRb8S2Rer6qtOQ",
-      // },
-      // {
-      //   name: "naver-site-verification",
-      //   content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
-      // },
+      { hid: "og:title", property: "og:title", content: "My VueLog" },
+      {
+        hid: "twitter:title",
+        name: "twitter:title",
+        content: "My VueLog",
+      },
+      { hid: "og:type", property: "og:type", content: "website" },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content: "/logo.png",
+      },
+      {
+        hid: "og:locale",
+        property: "og:locale",
+        content: "ko_KR",
+      },
+      {
+        hid: "twitter:image",
+        name: "twitter:image",
+        content: "/logo.png",
+      },
+      {
+        hid: "og:url",
+        property: "og:url",
+        content: process.env.VERCEL_URL,
+      },
+      {
+        hid: "description",
+        name: "description",
+        content: "Welcome to my VueLog!!",
+      },
+      {
+        hid: "og:description",
+        property: "og:description",
+        content: "Welcome to my VueLog!!",
+      },
+      {
+        hid: "twitter:description",
+        name: "twitter:description",
+        content: "Welcome to my VueLog!!",
+      },
+      {
+        hid: "twitter:card",
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "google-site-verification",
+        content: "cY-rrjGxRoSE5FAkvmVQTJEzozBaBGRb8S2Rer6qtOQ",
+      },
+      {
+        name: "naver-site-verification",
+        content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
+      },
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
