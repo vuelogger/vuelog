@@ -19,13 +19,31 @@ export default {
   computed: {
     ...mapState("post", ["post"]),
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
+        },
+      ],
+    };
+  },
 };
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: "RIDIBatang";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .post-content {
   width: 100%;
   height: 100%;
+  font-family: RIDIBatang;
 
   .header {
     display: flex;
@@ -60,7 +78,10 @@ export default {
     }
     h1 {
       font-size: 5rem;
+      position: relative;
+      line-height: normal;
       font-weight: bold;
+      text-align: center;
     }
   }
   article {
@@ -70,11 +91,11 @@ export default {
     width: 100%;
     max-width: 80rem;
     font-size: 1.6rem;
-    line-height: 2;
     line-break: anywhere;
     padding: 0 1rem;
     box-sizing: border-box;
     font-weight: normal;
+    color: #2b3141;
 
     .toc {
       position: relative;
@@ -151,16 +172,23 @@ export default {
     h2 {
       font-size: 2em;
       font-weight: bold;
+      margin-top: 3rem;
+      margin-bottom: 2rem;
     }
 
     h3 {
       font-size: 1.6em;
-      font-weight: bold;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
     }
 
     ul,
     ol {
       padding-left: 2rem;
+    }
+
+    p {
+      line-height: 2;
     }
   }
 }
