@@ -19,7 +19,7 @@ const routes = async () => {
       result.push("/post/" + category);
       for (const p of postRes.data.data) {
         result.push({
-          url: "/post/" + category + "/" + p.id,
+          url: "/post/" + category + "/" + p.slug,
           lastmod: p.updatedAt,
         });
       }
@@ -29,10 +29,6 @@ const routes = async () => {
 };
 
 export default {
-  server: {
-    host: "0", // default: localhost
-  },
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Vue로 만드는 Blog 세상, VueLog",

@@ -2,7 +2,7 @@
   <div class="container">
     <img class="bg" src="~/assets/images/bg.jpg" />
 
-    <!-- <Dock /> -->
+    <Dock />
     <DesktopHeader />
     <DesktopAppList />
 

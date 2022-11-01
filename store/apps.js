@@ -6,24 +6,24 @@ export const state = () => ({
       minW: 500,
       minH: 400,
     },
-    Guestbook: {
-      w: 300,
-      h: 200,
-      minW: 200,
-      minH: 100,
-    },
-    Musicplayer: {
-      w: 300,
-      h: 200,
-      minW: 200,
-      minH: 100,
-    },
-    Vuelog: {
-      w: 300,
-      h: 200,
-      minW: 200,
-      minH: 100,
-    },
+    // Guestbook: {
+    //   w: 300,
+    //   h: 200,
+    //   minW: 200,
+    //   minH: 100,
+    // },
+    // Musicplayer: {
+    //   w: 300,
+    //   h: 200,
+    //   minW: 200,
+    //   minH: 100,
+    // },
+    // Vuelog: {
+    //   w: 300,
+    //   h: 200,
+    //   minW: 200,
+    //   minH: 100,
+    // },
   },
 
   maxZIndex: 0,

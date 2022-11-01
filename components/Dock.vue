@@ -3,7 +3,7 @@
     <button class="dock__item" v-for="(info, name, i) in apps" :key="name">
       <img
         :style="{ 'min-width': widths[name] + 'px' }"
-        :src="loadImg(name)"
+        :src="require(`~/assets/images/apps/${name}.png`)"
         :ref="name"
         @mousemove="actives[i] = true"
         @mouseleave="actives[i] = false"
@@ -49,9 +49,7 @@ export default {
       }
       this.$store.commit("apps/open", name);
     },
-    loadImg(name) {
-      return require(`@/assets/images/apps/${name}.png`);
-    },
+
     updateTo(goalWidths) {
       // 기존 애니메이션 제거
       window.cancelAnimationFrame(this.aniID);
