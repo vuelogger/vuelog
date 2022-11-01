@@ -50,7 +50,7 @@ export default {
       this.$store.commit("apps/open", name);
     },
     loadImg(name) {
-      return require(`~/assets/images/apps/${name}.png`);
+      return require(`@/assets/images/apps/${name}.png`);
     },
     updateTo(goalWidths) {
       // 기존 애니메이션 제거
