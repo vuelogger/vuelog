@@ -63,27 +63,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~/assets/scss/base/mixins.scss";
+
 @keyframes cursor {
   0% {
-    border-right: 2px solid black;
+    border-right: 5px solid #ec4bff;
   }
   50% {
-    border-right: 2px solid transparent;
+    border-right: 5px solid transparent;
   }
   100% {
-    border-right: 2px solid black;
+    border-right: 5px solid #ec4bff;
   }
 }
 h1 {
+  font-size: 7rem;
+  font-weight: bold;
   span {
     display: block;
+    margin-bottom: 2rem;
+    color: #3da9d4;
+    text-shadow: 3px 3px 2px #6a6a6a;
   }
   strong {
     display: inline-block;
-    height: 0.8em;
     animation-name: cursor;
     animation-duration: 0.6s;
     animation-iteration-count: infinite;
+    color: #ec4bff;
+    padding-right: 0.5rem;
+    text-shadow: 3px 3px 2px #6a6a6a;
+  }
+}
+
+@include mobile {
+  h1 {
+    font-size: 4rem;
   }
 }
 </style>

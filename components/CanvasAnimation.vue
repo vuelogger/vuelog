@@ -1,5 +1,5 @@
 <template>
-  <canvas :width="width" :height="height"></canvas>
+  <canvas :width="width" :height="height" @click="click"></canvas>
 </template>
 
 <script>
@@ -7,16 +7,24 @@ export default {
   data() {
     return {
       ctx: null,
-
+      HillAni: null,
       appHead: 0,
     };
   },
   computed: {
     width() {
-      return this.$store.state.apps.apps.Post.w - 2; // border (1)
+      if (this.$device.isMobileOrTablet) {
+        return window ? window.innerWidth : 500;
+      } else {
+        return this.$store.state.apps.apps.Post.w - 2; // border (1)
+      }
     },
     height() {
-      return this.$store.state.apps.apps.Post.h - this.appHead - 2; // border (1)
+      if (this.$device.isMobileOrTablet) {
+        return window ? window.innerHeight : 500;
+      } else {
+        return this.$store.state.apps.apps.Post.h - this.appHead - 2; // border (1)
+      }
     },
   },
   watch: {
@@ -28,27 +36,25 @@ export default {
     },
   },
   methods: {
-    resize() {
-      this.$canvasResize(this.width, this.height);
+    click(e) {
+      const selected = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
+      this.$emit("objClick", selected);
     },
-    draw() {
-      this.$drawHillAni(this.ctx);
+    resize() {
+      this.HillAni.resize(this.width, this.height);
     },
     animate() {
       requestAnimationFrame(this.animate.bind(this));
-
       this.ctx.clearRect(0, 0, this.width, this.height);
-
-      this.draw();
+      this.HillAni.draw(this.ctx);
     },
   },
   created() {
     this.appHead = this.$getScssLength("appHeadHeight");
-    this.$initHills(this.width, this.height);
   },
   mounted() {
     this.ctx = this.$el.getContext("2d");
-    this.$initChars(this.width);
+    this.HillAni = new this.$HillAni(this.width, this.height);
 
     this.animate();
   },

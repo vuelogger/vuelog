@@ -6,19 +6,19 @@ export const state = () => ({
       minW: 500,
       minH: 400,
     },
-    GuestBook: {
+    Guestbook: {
       w: 300,
       h: 200,
       minW: 200,
       minH: 100,
     },
-    MusicPlayer: {
+    Musicplayer: {
       w: 300,
       h: 200,
       minW: 200,
       minH: 100,
     },
-    VueLog: {
+    Vuelog: {
       w: 300,
       h: 200,
       minW: 200,

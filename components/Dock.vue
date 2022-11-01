@@ -40,10 +40,14 @@ export default {
   },
   methods: {
     openApp(name) {
-      this.$store.commit("apps/open", name);
+      // 선택한 앱이 Post인 경우
       if (name === "Post") {
-        this.$router.push("/post");
+        // 최소화된 상태가 아니라면 /post 경로로 이동하기
+        if (!this.apps[name].minimized) {
+          this.$router.push("/post");
+        }
       }
+      this.$store.commit("apps/open", name);
     },
     loadImg(name) {
       return require(`~/assets/images/apps/${name}.png`);

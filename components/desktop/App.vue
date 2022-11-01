@@ -3,7 +3,7 @@
     <div class="app__head" @dblclick="headDblClick"></div>
     <DesktopAppBtns @close="close" @minimize="minimize" @maximize="maximize" />
     <div class="app__body">
-      <component :is="name" />
+      <DynamicComponent :name="name" path="./apps" />
     </div>
   </div>
 </template>
@@ -11,10 +11,6 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  components: {
-    Post: () => import("@/components/apps/Post.vue"),
-    MusicPlayer: () => import("@/components/apps/MusicPlayer.vue"),
-  },
   props: {
     name: {
       type: String,

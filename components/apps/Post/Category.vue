@@ -1,40 +1,39 @@
 <template>
   <div class="category">
     <header>
-      <CanvasAnimation class="canvas" />
-      <!-- <TypingAni class="typing" /> -->
-      <!-- <p>제 글들을 보러와주셨군요! 어떤 글들이 있는지 한 번 둘러보시겠어요?</p> -->
+      <CanvasAnimation class="canvas" @objClick.capture="canvasClick" />
+      <TypingAni class="typing" />
+      <p class="desc">언덕에 움직이는 카테고리들을 클릭해보세요~!</p>
     </header>
-
-    <!-- Blog or Vue Blog or VueLog -->
-    <!-- 배경은 양이 뛰어당기는 그걸로 할까 -->
-
-    <NuxtLink to="/post/vue">List</NuxtLink>
-    <NuxtLink to="/post/vue/slug">Content</NuxtLink>
-    <!-- Inpa님 블로그처럼 카테고리 표시 -->
-    <!-- 라라벨 블로그처럼 최신 글 10개 히스토리까럼 표시 -->
   </div>
 </template>
 
 <script>
 export default {
   async fetch() {
-    // const categories = await this.$axios.get("/api/categories");
-    // console.log(categories);
+    const categories = await this.$axios.get("/api/categories");
   },
   methods: {
-    canvasResize() {},
+    canvasClick(name) {
+      if (name) {
+        this.$router.push(`/post/${name}`);
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "~/assets/scss/base/mixins.scss";
+
 .category {
   height: 100%;
   overflow: auto;
   header {
     position: relative;
     height: 100%;
+    padding: 10rem;
+    box-sizing: border-box;
 
     .canvas {
       position: absolute;
@@ -42,10 +41,21 @@ export default {
     > * {
       position: relative;
     }
-  }
 
-  .typing {
-    font-size: 5rem;
+    .desc {
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      color: #7d7d7d;
+      text-indent: 0.5rem;
+    }
+  }
+}
+
+@include mobile {
+  .category {
+    header {
+      padding: 20% 10%;
+    }
   }
 }
 </style>

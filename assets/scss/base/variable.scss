@@ -1,6 +1,7 @@
 $key-color: #262626;
 
-$header-height: 3rem;
+$desktop-header-height: 3rem;
+$mobile-header-height: 5rem;
 
 $dock-width: 4rem;
 $dock-pad: 6px;
@@ -8,8 +9,12 @@ $dock-margin-left: 1rem;
 
 $app-head-height: 5rem;
 
+$breakpoint-desktop: 1024px;
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 320px;
+
 :export {
-  headerHeight: $header-height;
+  headerHeight: $desktop-header-height;
 
   dockWidth: $dock-width;
   dockPad: $dock-pad;

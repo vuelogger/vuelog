@@ -30,6 +30,10 @@
 // };
 
 export default {
+  server: {
+    host: "0", // default: localhost
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Vue로 만드는 Blog 세상, VueLog",
@@ -100,14 +104,7 @@ export default {
         content: "c23bf3d59533e7c2df171550b8d69c4a80838ff8",
       },
     ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        crossorigin: true,
-        href: "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css",
-      },
-    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
 
     script: [
       // Google Analytics Code
@@ -121,9 +118,9 @@ export default {
 
   serverMiddleware: [{ path: "/api", handler: __dirname + "/api/index.js" }],
 
-  // router: {
-  //   middleware: ["layout"],
-  // },
+  router: {
+    middleware: ["layout"],
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["~/assets/scss/index.scss"],

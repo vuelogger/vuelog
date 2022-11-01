@@ -3,7 +3,7 @@
     <img class="bg" src="~/assets/images/bg.jpg" />
 
     <Dock />
-    <Header />
+    <DesktopHeader />
     <DesktopAppList />
 
     <Nuxt />

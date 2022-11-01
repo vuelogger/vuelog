@@ -70,8 +70,7 @@ export default {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(2px);
+        background-color: #1a1a1a9c;
       }
     }
     & > * {
@@ -103,7 +102,7 @@ export default {
   article {
     display: flex;
     flex-direction: column;
-    margin: 3rem auto;
+    margin: 3rem auto 0 auto;
     width: 100%;
     max-width: 78rem;
     font-size: 1.6rem;
@@ -157,10 +156,9 @@ export default {
         }
         .h3 {
           font-size: 1.1em;
-          margin-top: 0.5rem;
+          margin-top: 1.5rem;
           color: $bg-color;
           transition: color 0.4s;
-          font-weight: bold;
           &:hover {
             color: #26b291;
           }
@@ -265,6 +263,8 @@ export default {
         padding: 0.2em 0.4em;
         background-color: #d8ffd8;
         border-radius: 6px;
+        box-shadow: 2px 2px 2px lightgrey;
+        margin-right: 0.2rem;
       }
     }
 
@@ -316,18 +316,22 @@ export default {
 
     strong {
       color: #ff6767;
-      text-shadow: 1px 1px 1px #bababa;
     }
 
     em {
-      padding-bottom: 0.3rem;
-      border-bottom: 1px solid;
-      font-weight: bold;
+      color: #507ed1;
+      box-shadow: inset 0 -10px 0 #74a7ff2b;
     }
 
     p {
       line-height: 2;
       margin-bottom: 0.5rem;
+    }
+
+    u {
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid;
+      text-decoration: none;
     }
 
     & > img {
