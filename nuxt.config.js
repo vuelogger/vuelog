@@ -1,33 +1,32 @@
-// const axios = require("axios");
-// const routes = async () => {
-//   const res = await axios.get("https://vuelog.dev/api/categories");
+const axios = require("axios");
+const routes = async () => {
+  const res = await axios.get("https://vuelog.dev/api/categories");
 
-//   const result = [];
+  const result = [];
 
-//   for (const c of res.data) {
-//     // all은 없앤다.
-//     if (c.category) {
-//       const postRes = await axios.get("https://vuelog.dev/api/posts", {
-//         params: {
-//           category: c.category,
-//           pageSize: 10000,
-//           currPage: 0,
-//         },
-//       });
-//       const category = c.category === "" ? "all" : c.category;
+  for (const c of res.data) {
+    // all은 없앤다.
+    if (c.category) {
+      const postRes = await axios.get("https://vuelog.dev/api/posts", {
+        params: {
+          category: c.category,
+          pageSize: 2000,
+          currPage: 0,
+        },
+      });
+      const category = c.category === "" ? "all" : c.category;
 
-//       result.push("/post/" + category);
-//       for (const p of postRes.data.data) {
-//         result.push({
-//           url: "/post/" + category + "/" + p.id,
-//           lastmod: p.updatedAt,
-//         });
-//       }
-//       console.log(result);
-//     }
-//   }
-//   return result;
-// };
+      result.push("/post/" + category);
+      for (const p of postRes.data.data) {
+        result.push({
+          url: "/post/" + category + "/" + p.id,
+          lastmod: p.updatedAt,
+        });
+      }
+    }
+  }
+  return result;
+};
 
 export default {
   server: {
@@ -145,10 +144,10 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ["@nuxtjs/moment", "@nuxtjs/device"],
 
-  // sitemap: {
-  //   //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
-  //   routes,
-  // },
+  sitemap: {
+    //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
+    routes,
+  },
   env: {
     baseUrl: process.env.VERCEL_URL || "http://127.0.0.1:3000",
   },
