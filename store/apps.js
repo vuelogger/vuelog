@@ -81,6 +81,11 @@ export const mutations = {
   close(state, name) {
     state.apps[name].opened = false;
   },
+  closeAll(state) {
+    for (const name in state.apps) {
+      state.apps[name].opened = false;
+    }
+  },
   minimize(state, name) {
     state.apps[name].minimized = true;
   },

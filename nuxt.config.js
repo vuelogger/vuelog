@@ -29,6 +29,9 @@ const routes = async () => {
 };
 
 export default {
+  server: {
+    host: "0", // default: localhost
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Vue로 만드는 Blog 세상, VueLog",

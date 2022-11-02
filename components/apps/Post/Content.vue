@@ -107,7 +107,7 @@ export default {
     max-width: 78rem;
     font-size: 1.6rem;
     line-break: anywhere;
-    padding: 0 1rem;
+    padding: 0 2rem;
     box-sizing: border-box;
     font-weight: normal;
     color: #2b3141;
@@ -149,6 +149,7 @@ export default {
           transition: color 0.4s;
           margin-bottom: 1rem;
           font-weight: bold;
+          line-height: 1.3;
 
           &:hover {
             color: #00ffc3;
@@ -186,18 +187,21 @@ export default {
     }
 
     h2 {
+      position: relative;
       font-size: 2em;
       font-weight: bold;
-      margin-top: 7rem;
-      margin-bottom: 2rem;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      margin-bottom: 3rem;
       padding-bottom: 1rem;
-      border-bottom: 2px solid lightgray;
+      text-shadow: 2px 2px 2px lightgrey;
     }
 
     h3 {
       font-size: 1.6em;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
+      padding-top: 2rem;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
     }
 
     iframe {
@@ -257,6 +261,15 @@ export default {
         }
       }
     }
+
+    .text-link {
+      color: #0090ff;
+      &:hover {
+        padding-bottom: 0.2rem;
+        border-bottom: 2px solid;
+      }
+    }
+
     p {
       line-height: 1.8;
       > code {
@@ -271,33 +284,49 @@ export default {
     .code-block {
       border-radius: 0 6px 6px 6px;
       overflow: hidden;
-      margin: 2rem 0;
+      margin: 3rem 0;
       display: flex;
       flex-direction: column;
       position: relative;
 
       .head {
+        width: 100%;
+        background-color: #1e1e1e;
+        color: white;
+        border-radius: 6px 6px 0 0;
+        display: flex;
+        padding: 1em;
+        box-sizing: border-box;
         .caption {
-          color: white;
-          background-color: #1e1e1e;
-          width: fit-content;
-          padding: 0 1rem;
+          line-height: 1;
+          margin-left: auto;
+          font-size: 0.8em;
+          color: #979797;
         }
         .language {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          color: white;
+          line-height: 1;
+          color: black;
+          text-transform: uppercase;
+          padding: 0.2em 0.5em;
+          background-color: #e4e464;
         }
       }
 
       code {
         line-height: 1.6;
+        padding-top: 0;
       }
     }
 
     hr {
       width: 100%;
+      height: 3.5rem;
+      border: 0;
+      background-image: url(/images/divider.png);
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 3rem 0;
     }
 
     > ul,
@@ -337,7 +366,8 @@ export default {
     & > img {
       max-width: 100%;
       width: fit-content;
-      margin: 0 auto;
+      margin: 3rem auto;
+      border-radius: 8px;
     }
   }
 }

@@ -1,11 +1,22 @@
 <template>
   <header class="header">
-    <NuxtLink to="/" class="header__logo">
+    <button @click="toHome" class="header__logo">
       <img src="/logo.png" alt="logo" />
-    </NuxtLink>
+    </button>
     <p class="header__title">Vue로 만드는 블로그 세상</p>
   </header>
 </template>
+
+<script>
+export default {
+  methods: {
+    toHome() {
+      this.$store.commit("apps/closeAll");
+      this.$router.push("/");
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "~/assets/scss/base/variable.scss";

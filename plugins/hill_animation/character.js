@@ -22,7 +22,7 @@ export default class Character {
 
     this.rotation = null;
 
-    this.speed = 1 / canvasW + 0.5;
+    this.speed = 3 / canvasW + 1;
   }
 
   resize(canvasW, canvasH) {

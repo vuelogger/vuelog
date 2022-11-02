@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <header>
-      <CanvasAnimation class="canvas" @objClick.capture="canvasClick" />
+      <CanvasAnimation class="canvas" />
       <TypingAni class="typing" />
       <p class="desc">언덕에 움직이는 카테고리들을 클릭해보세요~!</p>
     </header>
@@ -11,14 +11,7 @@
 <script>
 export default {
   async fetch() {
-    const categories = await this.$axios.get("/api/categories");
-  },
-  methods: {
-    canvasClick(name) {
-      if (name) {
-        this.$router.push(`/post/${name}`);
-      }
-    },
+    await this.$axios.get("/api/categories");
   },
 };
 </script>

@@ -60,10 +60,11 @@ class HillAni {
       // 앞에 있는 것부터 클릭 되도록 순서 뒤집기
       for (const c of [...this.chars[i]].reverse()) {
         selected = c.select(ctx, x, y);
-        if (selected) return selected;
+        if (selected) break;
       }
+      if (selected) break;
     }
-    return null;
+    return selected;
   }
 
   draw(ctx) {

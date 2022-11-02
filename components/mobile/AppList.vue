@@ -5,7 +5,7 @@
         class="item"
         v-for="(app, name) in apps"
         :key="name"
-        @click="clickApp(name)"
+        @click.prevent="clickApp(name)"
       >
         <img
           class="ico"
@@ -13,7 +13,7 @@
           :alt="name"
         />
         <p class="name">{{ name }}</p>
-        <MobileApp v-if="app.opened" :name="name" />
+        <MobileApp v-if="apps[name]?.opened" :name="name" />
       </li>
     </ul>
   </div>
@@ -22,15 +22,23 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      openedName: null,
+    };
+  },
   computed: {
     ...mapState("apps", ["apps"]),
   },
   methods: {
     clickApp(name) {
+      console.log("click");
       if (name === "Post") {
         this.$router.push("/post");
       }
-      this.$store.commit("apps/open", name);
+      setTimeout(() => {
+        this.$store.commit("apps/open", name);
+      }, 200);
     },
   },
 };

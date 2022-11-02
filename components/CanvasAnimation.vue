@@ -37,8 +37,10 @@ export default {
   },
   methods: {
     click(e) {
-      const selected = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
-      this.$emit("objClick", selected);
+      const name = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
+      if (name) {
+        this.$router.push(`/post/${name}`);
+      }
     },
     resize() {
       this.HillAni.resize(this.width, this.height);
