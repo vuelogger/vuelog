@@ -1,16 +1,12 @@
 <template>
   <div class="app-list">
     <ul class="list">
-      <li
-        class="item"
-        v-for="(app, name) in apps"
-        :key="name"
-        @click="clickApp(name)"
-      >
+      <li class="item" v-for="(app, name) in apps" :key="name">
         <img
           class="ico"
           :src="require(`~/assets/images/apps/${name}.png`)"
           :alt="name"
+          @click="clickApp(name)"
         />
         <p class="name">{{ name }}</p>
         <MobileApp v-if="apps[name]?.opened" :name="name" />
