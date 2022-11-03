@@ -23,6 +23,7 @@ class HillAni {
       //   name: "javascript",
       //   src: require("@/assets/images/apps/post/Javascript.png"),
       // },
+      { name: "etc", src: require("@/assets/images/apps/post/ETC.png") },
       { name: "vue", src: require("@/assets/images/apps/post/Vue.png") },
     ];
 
