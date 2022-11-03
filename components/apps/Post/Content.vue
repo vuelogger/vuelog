@@ -272,13 +272,14 @@ export default {
 
     p {
       line-height: 1.8;
-      > code {
-        padding: 0.2em 0.4em;
-        background-color: #d8ffd8;
-        border-radius: 6px;
-        box-shadow: 2px 2px 2px lightgrey;
-        margin-right: 0.2rem;
-      }
+    }
+
+    :not(pre) code {
+      padding: 0.2em 0.4em;
+      background-color: #d8ffd8;
+      border-radius: 6px;
+      box-shadow: 2px 2px 2px lightgrey;
+      margin-right: 0.2rem;
     }
 
     .code-block {
