@@ -5,7 +5,7 @@
         class="item"
         v-for="(app, name) in apps"
         :key="name"
-        @click.prevent="clickApp(name)"
+        @click="clickApp(name)"
       >
         <img
           class="ico"
