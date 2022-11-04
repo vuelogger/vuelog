@@ -158,6 +158,7 @@ export default {
         .h3 {
           font-size: 1.1em;
           margin-top: 1.5rem;
+          line-height: 1.6;
           color: $bg-color;
           transition: color 0.4s;
           &:hover {
@@ -206,6 +207,18 @@ export default {
 
     iframe {
       margin: 2rem 0;
+    }
+
+    .callout {
+      display: flex;
+      padding: 1em;
+      background-color: #d0e3ff91;
+      border-radius: 8px;
+
+      &__emoji {
+        margin-top: 0.8rem;
+        margin-right: 1rem;
+      }
     }
 
     .bookmark {
@@ -264,9 +277,11 @@ export default {
 
     .text-link {
       color: #0090ff;
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid;
       &:hover {
-        padding-bottom: 0.2rem;
-        border-bottom: 2px solid;
+        padding-bottom: none;
+        color: #0800ff;
       }
     }
 
