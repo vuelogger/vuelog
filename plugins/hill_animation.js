@@ -17,12 +17,12 @@ class HillAni {
 
   initChars(canvasW, canvasH) {
     const imgs = [
-      // { name: "html", src: require("@/assets/images/apps/post/HTML.png") },
-      // { name: "css", src: require("@/assets/images/apps/post/CSS.png") },
-      // {
-      //   name: "javascript",
-      //   src: require("@/assets/images/apps/post/Javascript.png"),
-      // },
+      { name: "html", src: require("@/assets/images/apps/post/HTML.png") },
+      { name: "css", src: require("@/assets/images/apps/post/CSS.png") },
+      {
+        name: "javascript",
+        src: require("@/assets/images/apps/post/Javascript.png"),
+      },
       { name: "etc", src: require("@/assets/images/apps/post/ETC.png") },
       { name: "vue", src: require("@/assets/images/apps/post/Vue.png") },
     ];

@@ -63,6 +63,35 @@ class MongoDB {
     });
   }
 
+  async getMusics() {
+    return await this.run(async () => {
+      const cursor = await this.db
+        .collection("musics")
+        .find()
+        .project({ _id: 0 });
+      const result = await cursor.toArray();
+      await cursor.close();
+
+      return result;
+    });
+  }
+
+  async getDiary(pageSize, currPage) {
+    return await this.run(async () => {
+      const cursor = await this.db
+        .collection("diary")
+        .find()
+        .project({ _id: 0 })
+        .skip(currPage * pageSize)
+        .limit(pageSize);
+      const result = await cursor.toArray();
+
+      await cursor.close();
+
+      return result;
+    });
+  }
+
   // async fetch(category, pageSize, currPage, postId) {
   //   return await this.run(async () => {
   //     const postsCol = await this.db.collection("posts");
@@ -98,19 +127,6 @@ class MongoDB {
   //       .find()
   //       .project({ _id: 0 });
 
-  //     const result = await cursor.toArray();
-  //     await cursor.close();
-
-  //     return result;
-  //   });
-  // }
-
-  // async getMusics() {
-  //   return await this.run(async () => {
-  //     const cursor = await this.db
-  //       .collection("musics")
-  //       .find()
-  //       .project({ _id: 0 });
   //     const result = await cursor.toArray();
   //     await cursor.close();
 

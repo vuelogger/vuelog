@@ -104,7 +104,7 @@ export default {
     flex-direction: column;
     margin: 3rem auto 0 auto;
     width: 100%;
-    max-width: 78rem;
+    max-width: $post-max-width;
     font-size: 1.6rem;
     line-break: anywhere;
     padding: 0 2rem;
@@ -212,12 +212,21 @@ export default {
     .callout {
       display: flex;
       padding: 1em;
-      background-color: #d0e3ff91;
       border-radius: 8px;
+      margin: 3rem 1rem;
+      background-color: whitesmoke;
 
       &__emoji {
         margin-top: 0.8rem;
         margin-right: 1rem;
+      }
+
+      &.info {
+        background-color: #d0e3ff91;
+      }
+
+      &.warn {
+        background-color: #fffbc3;
       }
     }
 

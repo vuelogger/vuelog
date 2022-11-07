@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     clickApp(name) {
-      console.log("click");
       if (name === "Post") {
         this.$router.push("/post");
       }

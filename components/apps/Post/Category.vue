@@ -8,14 +8,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  async fetch() {
-    await this.$axios.get("/api/categories");
-  },
-};
-</script>
-
 <style lang="scss" scoped>
 @import "~/assets/scss/base/mixins.scss";
 

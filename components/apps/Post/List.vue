@@ -58,15 +58,16 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 3rem;
-    gap: 3rem;
+    gap: 8rem 3rem;
+    margin: 0 auto;
+    max-width: $post-max-width;
 
     li {
       display: flex;
       flex-direction: column;
-      border-radius: 8px;
       background-color: white;
-      box-shadow: 2px 4px 6px 2px lightgray;
-      overflow: hidden;
+      // box-shadow: 2px 4px 6px 2px lightgray;
+      // overflow: hidden;
       transition: all 0.4s;
       > a {
         display: flex;
@@ -76,7 +77,6 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          border-bottom: 1px solid lightgray;
           height: 20rem;
           overflow: hidden;
           img {
@@ -134,7 +134,7 @@ export default {
             display: flex;
             align-items: center;
             margin-top: auto;
-            padding-top: 3rem;
+            padding-top: 2rem;
             margin-top: auto;
 
             .author {
@@ -174,7 +174,7 @@ export default {
       }
       &:hover {
         box-shadow: 2px 4px 6px 2px gray;
-        transform: translateY(-20px);
+        // transform: translateY(-20px);
         .cover {
           img {
             transform: scale(1.3);
