@@ -1,5 +1,5 @@
 <template>
-  <div>VueLog 공사중</div>
+  <div>VueLog</div>
 </template>
 
 <script>
