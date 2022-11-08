@@ -1,7 +1,7 @@
 export const state = () => ({
   diary: [],
   page: 0,
-  pageSize: 3,
+  pageSize: 10000,
 });
 
 export const mutations = {

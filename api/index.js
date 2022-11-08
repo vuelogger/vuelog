@@ -49,21 +49,21 @@ app.get("/posts", async (req, res) => {
   res.json(result);
 });
 
-// app.get("/diary", async (req, res) => {
-//   const db = new MongoDB();
+app.get("/diary", async (req, res) => {
+  const db = new MongoDB();
 
-//   const result = await db.getDiary(
-//     parseInt(req.query.pageSize),
-//     parseInt(req.query.page)
-//   );
-//   res.json(result);
-// });
+  const result = await db.getDiary(
+    parseInt(req.query.pageSize),
+    parseInt(req.query.page)
+  );
+  res.json(result);
+});
 
-// app.get("/musics", async (req, res) => {
-//   const db = new MongoDB();
-//   const result = await db.getMusics();
+app.get("/musics", async (req, res) => {
+  const db = new MongoDB();
+  const result = await db.getMusics();
 
-//   res.json(result);
-// });
+  res.json(result);
+});
 
 module.exports = app;

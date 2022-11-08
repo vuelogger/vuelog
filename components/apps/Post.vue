@@ -12,8 +12,8 @@ export default {
   computed: {
     ...mapState("apps", ["postMode"]),
   },
-  async fetch() {
-    await this.$store.dispatch("post/getCategories");
+  fetch() {
+    this.$store.dispatch("post/getCategories");
   },
   updated() {
     this.$el.scrollTo(0, 0);

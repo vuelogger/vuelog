@@ -18,12 +18,12 @@ export const state = () => ({
     //   minW: 200,
     //   minH: 100,
     // },
-    // BlogDiary: {
-    //   w: 500,
-    //   h: 800,
-    //   minW: 300,
-    //   minH: 500,
-    // },
+    BlogDiary: {
+      w: 500,
+      h: 800,
+      minW: 300,
+      minH: 500,
+    },
   },
 
   maxZIndex: 0,

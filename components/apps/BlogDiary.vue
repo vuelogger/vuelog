@@ -11,7 +11,6 @@
         <p>{{ d.content }}</p>
       </li>
     </ul>
-    <button @click="more">더 보기</button>
   </div>
 </template>
 
@@ -21,9 +20,9 @@ export default {
   computed: {
     ...mapState("diary", ["diary"]),
   },
-  // async fetch() {
-  //   await this.$store.dispatch("diary/getDiary");
-  // },
+  fetch() {
+    this.$store.dispatch("diary/getDiary");
+  },
 };
 </script>
 

@@ -71,7 +71,7 @@ export default {
       post = await store.dispatch("post/getPost", route.params.slug);
     } else if (category) {
       mode = "list";
-      await store.dispatch("post/getPosts", route.params.category);
+      store.dispatch("post/getPosts", route.params.category);
     }
 
     store.commit("apps/updatePostMode", mode);
