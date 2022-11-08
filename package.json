@@ -9,11 +9,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@notionhq/client": "^1.0.4",
-    "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/moment": "^1.6.1",
-    "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/vercel-builder": "^0.21.3",
     "@vercel/node": "^2.1.0",
     "body-parser": "^1.20.0",
     "core-js": "^3.23.1",
@@ -26,6 +21,10 @@
     "@nuxtjs/device": "^2.1.0",
     "nuxt": "^2.15.8",
     "sass": "^1.56.0",
-    "sass-loader": "^10.3.1"
+    "sass-loader": "^10.3.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/sitemap": "^2.4.0",
+    "@nuxtjs/vercel-builder": "^0.21.3"
   }
 }
