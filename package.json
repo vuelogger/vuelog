@@ -14,7 +14,7 @@
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/sitemap": "^2.4.0",
-    "@nuxtjs/vercel-builder": "0.21.0",
+    "@nuxtjs/vercel-builder": "0.21.3",
     "@vercel/node": "^2.1.0",
     "body-parser": "^1.20.0",
     "core-js": "^3.23.1",
