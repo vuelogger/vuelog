@@ -17,12 +17,12 @@ export default class Character {
     this.opacity = opacity;
 
     this.halfW = size / 2;
-    this.x = canvasW + size * Math.random() * 5;
+    this.x = this.canvasW + size * Math.random() * 5;
     this.y = 0;
 
     this.rotation = null;
 
-    this.speed = 3 / canvasW + Math.random() * 2;
+    this.speed = 3 / this.canvasW + Math.random() * 2;
   }
 
   resize(canvasW, canvasH) {
@@ -47,7 +47,7 @@ export default class Character {
         this.x -= this.speed;
         if (this.x < -this.width) {
           this.x = this.canvasW;
-          this.speed = 3 / canvasW + Math.random() * 2;
+          this.speed = 3 / this.canvasW + Math.random() * 2;
         }
         const closest = this.getY(this.x, dots);
         this.y = closest.y;

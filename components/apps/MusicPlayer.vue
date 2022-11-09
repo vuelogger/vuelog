@@ -3,95 +3,72 @@
     <template v-if="music">
       <img class="bg" :src="music.image" />
 
-      <!-- <div class="volume">
-        <Slider />
-      </div> -->
-
       <div class="image">
         <div class="inner">
-          <img :src="music.image" />
+          <img :src="music.image" :class="{ active: isPlaying }" />
         </div>
       </div>
 
       <h2 class="title">{{ music.title }}</h2>
       <h3 class="artist">{{ music.artist }}</h3>
 
-      <!-- Track -->
       <div class="track">
-        <Slider />
+        <p class="curr">{{ currTime }}</p>
+        <Slider
+          class="track"
+          v-model="track"
+          :size="3"
+          :max="99"
+          @input="trackChange"
+        >
+        </Slider>
+        <p class="total">{{ totalTime }}</p>
       </div>
 
       <div class="controller">
+        <button class="prev" @click="prev">
+          <img src="@/assets/images/audio/prev.png" />
+        </button>
+        <button @click="backward">
+          <img src="@/assets/images/audio/backward.png" />
+        </button>
+        <button class="play" @click="play">
+          <img v-show="isPlaying" src="@/assets/images/audio/pause.png" />
+          <img v-show="!isPlaying" src="@/assets/images/audio/play.png" />
+        </button>
+        <button @click="forward">
+          <img src="@/assets/images/audio/forward.png" />
+        </button>
+        <button class="next" @click="next">
+          <img src="@/assets/images/audio/next.png" />
+        </button>
+      </div>
+
+      <div class="volume">
+        <Slider v-model="volume" :size="3">
+          <img
+            class="mute"
+            src="~/assets/images/audio/mute.png"
+            slot="preImg"
+          />
+          <img
+            class="max"
+            src="~/assets/images/audio/volumemax.png"
+            slot="suImg"
+          />
+        </Slider>
+      </div>
+
+      <div class="play-conf">
         <!-- <button class="random">
           <img src="@/assets/images/audio/random.svg" />
         </button> -->
-        <button class="prev">
-          <img src="@/assets/images/audio/prev.svg" />
-        </button>
-        <button class="play">
-          <img v-if="isPlaying" src="@/assets/images/audio/pause.png" />
-          <img else src="@/assets/images/audio/play.png" />
-        </button>
-        <button class="next">
-          <img src="@/assets/images/audio/next.svg" />
-        </button>
         <!-- <button class="repeat">
           <img src="@/assets/images/audio/repeat.svg" />
         </button> -->
       </div>
     </template>
     <div class="loading" v-else></div>
-
-    <!-- <div class="music-player__info">
-      <div class="image" :class="{ playing: isPlaying }">
-        <img :src="musics[mIdx].image" />
-      </div>
-      <h2 class="title">
-        <div class="title__texts" :class="{ playing: isPlaying && isTextLong }">
-          <span>{{ musics[mIdx].title }}</span>
-          <span v-show="isTextLong">{{ musics[mIdx].title }}</span>
-        </div>
-      </h2>
-      <p class="artist">{{ musics[mIdx].artist }}</p>
-    </div>
-
-    <Slider
-      class="music-player__track"
-      @input="trackChange"
-      v-model="track"
-      :max="99"
-    />
-
-    <div class="music-player__time">
-      <p class="curr-time">{{ currTime }}</p>
-      <p class="total-time">{{ totalTime }}</p>
-    </div>
-
-    <div class="music-player__controller">
-      <button class="btn prev" @click="prev">
-        <img src="~/assets/images/audio/prev.svg" />
-      </button>
-      <button class="btn play" @click="play">
-        <img src="~/assets/images/audio/play.png" v-show="!isPlaying" />
-        <img
-          class="pause-img"
-          src="~/assets/images/audio/pause.png"
-          v-show="isPlaying"
-        />
-      </button>
-      <button class="btn next" @click="next">
-        <img src="~/assets/images/audio/next.svg" />
-      </button>
-    </div>
-
-    <Slider class="music-player__volume" v-model="volume" :size="3">
-      <img src="~/assets/images/audio/mute.svg" alt="mute" slot="preImg" />
-      <img
-        src="~/assets/images/audio/fullsound.svg"
-        alt="full sound"
-        slot="suImg"
-      />
-    </Slider> -->
   </div>
 </template>
 
@@ -101,9 +78,12 @@ export default {
   data() {
     return {
       isPlaying: false,
-      idx: 2,
+      idx: 0,
       audio: null,
       volume: 30,
+      track: 0,
+      currTime: "00:00",
+      totalTime: "00:00",
     };
   },
   computed: {
@@ -112,112 +92,80 @@ export default {
       return this.musics[this.idx];
     },
   },
+  watch: {
+    volume(v) {
+      this.audio.volume = v / 100;
+    },
+    idx(v) {
+      this.audio.src = this.musics[v].src;
+      this.audio.load();
+      this.audio.play();
+      this.isPlaying = true;
+    },
+  },
   methods: {
+    backward() {
+      this.track = this.track - 5;
+      if (this.track <= 0) {
+        this.track = 0;
+      }
+      this.trackChange();
+    },
+    forward() {
+      this.track = this.track + 5;
+      if (this.track > this.totalTime) {
+        this.track = this.totalTime - 1;
+      }
+      this.trackChange();
+    },
     prev() {
-      this.idx = this.idx - 1 < 0 ? this.musics.length - 1 : this.mIdx - 1;
+      this.idx = this.idx - 1 < 0 ? this.musics.length - 1 : this.idx - 1;
     },
     next() {
       this.idx = (this.idx + 1) % this.musics.length;
     },
-    play() {},
-    // updateTime() {
-    //   this.currTime = this.toStringFrom(this.audio.currentTime);
-    //   this.totalTime = this.toStringFrom(this.audio.duration);
-    //   this.track = (100 / this.audio.duration) * this.audio.currentTime;
-    // },
-    // trackChange() {
-    //   this.audio.currentTime = (this.audio.duration * this.track) / 100;
-    // },
+    play() {
+      if (this.isPlaying) {
+        this.audio.pause();
+      } else {
+        this.audio.play();
+      }
+      this.isPlaying = !this.isPlaying;
+    },
+    toStringFrom(time) {
+      let min = Math.floor(time / 60);
+      let sec = Math.floor(time - min * 60);
+      if (min < 10) {
+        min = "0" + min;
+      }
+      if (sec < 10) {
+        sec = "0" + sec;
+      }
+      return `${min}:${sec}`;
+    },
+    updateTime() {
+      this.currTime = this.toStringFrom(this.audio.currentTime);
+      this.totalTime = this.toStringFrom(this.audio.duration);
+      this.track = (100 / this.audio.duration) * this.audio.currentTime;
+    },
+    trackChange() {
+      this.audio.currentTime = (this.audio.duration * this.track) / 100;
+    },
   },
   async fetch() {
     await this.$store.dispatch("music/getMusics");
-    this.audio = new Audio(this.currMusic.src);
+    console.log(this.musics[this.idx].src);
+    this.audio = new Audio(this.musics[this.idx].src);
     this.audio.ontimeupdate = this.updateTime;
     this.audio.onloadedmetadata = this.updateTime;
     this.audio.onended = this.next;
     this.audio.volume = this.volume / 100;
   },
-
-  // data() {
-  //   return {
-  //     track: 0,
-  //     volume: 30,
-  //     mIdx: 0,
-  //     audio: null,
-  //     currTime: "00:00",
-  //     totalTime: "00:00",
-  //     isPlaying: false,
-  //     isFirstTime: true,
-  //   };
-  // },
-  // computed: {
-  //   ...mapState("notion", ["musics"]),
-  //   ...mapState("header", ["activatedItem"]),
-  //   isTextLong() {
-  //     return this.musics[this.mIdx].src.length > 16;
-  //   },
-  // },
-  // watch: {
-  //   async activatedItem(name) {
-  //     if (name == "musicPlayer" && this.isFirstTime) {
-  //       await this.$store.dispatch("notion/getMusics");
-  //       this.audio = new Audio(this.musics[this.mIdx].src);
-  //       this.audio.ontimeupdate = this.updateTime;
-  //       this.audio.onloadedmetadata = this.updateTime;
-  //       this.audio.onended = this.next;
-  //       this.audio.volume = this.volume / 100;
-  //       this.isFirstTime = false;
-  //     }
-  //   },
-  //   src(v) {
-  //     this.audio.load();
-  //     this.audio.play();
-  //   },
-  //   volume(v) {
-  //     this.audio.volume = v / 100;
-  //   },
-  //   mIdx(v) {
-  //     this.audio.src = this.musics[v].src;
-  //     this.audio.load();
-  //     this.audio.play();
-  //     this.isPlaying = true;
-  //   },
-  // },
-  // methods: {
-  //   toStringFrom(time) {
-  //     let min = Math.floor(time / 60);
-  //     let sec = Math.floor(time - min * 60);
-  //     if (min < 10) {
-  //       min = "0" + min;
-  //     }
-  //     if (sec < 10) {
-  //       sec = "0" + sec;
-  //     }
-  //     return `${min}:${sec}`;
-  //   },
-  //   prev() {
-  //     this.mIdx = this.mIdx - 1 < 0 ? this.musics.length - 1 : this.mIdx - 1;
-  //   },
-  //   next() {
-  //     this.mIdx = (this.mIdx + 1) % this.musics.length;
-  //   },
-  //   play() {
-  //     if (this.isPlaying) {
-  //       this.audio.pause();
-  //     } else {
-  //       this.audio.play();
-  //     }
-  //     this.isPlaying = !this.isPlaying;
-  //   },
-  //   updateTime() {
-  //     this.currTime = this.toStringFrom(this.audio.currentTime);
-  //     this.totalTime = this.toStringFrom(this.audio.duration);
-  //     this.track = (100 / this.audio.duration) * this.audio.currentTime;
-  //   },
-  //   trackChange() {
-  //     this.audio.currentTime = (this.audio.duration * this.track) / 100;
-  //   },
-  // },
+  beforeDestroy() {
+    if (this.isPlaying) {
+      this.audio.pause();
+    }
+  },
 };
 </script>
 
@@ -227,7 +175,7 @@ export default {
   overflow: hidden !important;
   display: flex;
   flex-direction: column;
-  padding: 1rem 3rem 6rem 3rem;
+  padding: 1rem 4rem 4rem 4rem;
   box-sizing: border-box;
 
   .bg {
@@ -262,22 +210,11 @@ export default {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 110%;
-        height: 110%;
+        width: 103%;
+        height: 103%;
         background-color: lightgray;
         border-radius: 50%;
         z-index: -1;
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 108%;
-        height: 108%;
-        background-color: #1e1e1e;
-        border-radius: 50%;
       }
 
       img {
@@ -286,6 +223,10 @@ export default {
         height: 100%;
         border-radius: 50%;
         z-index: 1;
+
+        &.active {
+          animation: rotate linear 15s infinite;
+        }
       }
     }
   }
@@ -306,12 +247,26 @@ export default {
   }
 
   .track {
+    position: relative;
     width: 100%;
-    margin: 2rem auto;
+    margin: 1rem auto;
+    color: #eee;
+
+    p {
+      position: absolute;
+      font-size: 1rem;
+      top: 100%;
+      &.curr {
+        left: 0;
+      }
+      &.total {
+        right: 0;
+      }
+    }
   }
 
   .controller {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -320,11 +275,32 @@ export default {
       width: 30px;
       height: 30px;
       object-fit: contain;
-      margin: 0 1.5rem;
+      margin: 0 1rem;
 
       &.play {
-        transform: translateY(1px);
+        transform: translateY(1px) scale(0.8);
       }
+
+      &.prev,
+      &.next {
+        width: 22px;
+        height: 22px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .volume {
+    width: 70%;
+    margin: 2rem auto 0 auto;
+
+    .mute {
+      transform: scale(0.85);
     }
   }
 

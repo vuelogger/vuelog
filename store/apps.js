@@ -12,12 +12,12 @@ export const state = () => ({
     //   minW: 200,
     //   minH: 100,
     // },
-    // MusicPlayer: {
-    //   w: 300,
-    //   h: 500,
-    //   minW: 200,
-    //   minH: 400,
-    // },
+    MusicPlayer: {
+      w: 300,
+      h: 500,
+      minW: 270,
+      minH: 450,
+    },
     BlogDiary: {
       w: 500,
       h: 800,
