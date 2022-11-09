@@ -6,17 +6,17 @@ export const state = () => ({
       minW: 500,
       minH: 400,
     },
-    // Guestbook: {
+    // GuestBook: {
     //   w: 300,
     //   h: 200,
     //   minW: 200,
     //   minH: 100,
     // },
-    // Musicplayer: {
+    // MusicPlayer: {
     //   w: 300,
-    //   h: 200,
+    //   h: 500,
     //   minW: 200,
-    //   minH: 100,
+    //   minH: 400,
     // },
     BlogDiary: {
       w: 500,

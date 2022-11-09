@@ -25,6 +25,7 @@ class HillAni {
       },
       { name: "etc", src: require("@/assets/images/apps/post/ETC.png") },
       { name: "vue", src: require("@/assets/images/apps/post/Vue.png") },
+      { name: "nuxt", src: require("@/assets/images/apps/post/Nuxt.png") },
     ];
 
     this.hills.forEach((v, i) => {

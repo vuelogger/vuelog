@@ -41,9 +41,6 @@ export default {
   methods: {
     close() {
       this.$store.commit("apps/close", this.name);
-      if (this.name === "Post") {
-        this.$router.push("/");
-      }
     },
     minimize() {
       this.$store.commit("apps/minimize", this.name);

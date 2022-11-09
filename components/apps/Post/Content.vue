@@ -199,10 +199,11 @@ export default {
     }
 
     h3 {
-      font-size: 1.6em;
-      padding-top: 2rem;
-      margin-top: 1rem;
+      font-size: 1.4em;
+      margin-top: 3rem;
       margin-bottom: 3rem;
+      border-left: 8px solid #8261f4;
+      padding-left: 1.5rem;
     }
 
     iframe {
@@ -254,10 +255,19 @@ export default {
           color: gray;
           @include textClip(2);
         }
+        .favicon {
+          height: 2rem;
+          vertical-align: middle;
+          margin-right: 0.5rem;
+        }
         .link {
+          font-size: 0.6em;
+          color: rgb(38 106 186);
+          padding-bottom: 0.1rem;
+          border-bottom: 1px solid;
+        }
+        :last-child {
           margin-top: auto;
-          font-size: 0.8em;
-          color: rgb(65, 113, 128);
         }
       }
       &__right {
@@ -298,7 +308,7 @@ export default {
       line-height: 1.8;
     }
 
-    :not(pre) code {
+    :not(pre) > code {
       padding: 0.2em 0.4em;
       background-color: #d8ffd8;
       border-radius: 6px;
@@ -313,6 +323,7 @@ export default {
       display: flex;
       flex-direction: column;
       position: relative;
+      font-family: "Courier New", Courier, monospace;
 
       .head {
         width: 100%;
