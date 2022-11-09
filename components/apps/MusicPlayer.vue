@@ -29,14 +29,14 @@
         <button class="prev" @click="prev">
           <img src="@/assets/images/audio/prev.png" />
         </button>
-        <button @click="backward">
+        <button class="backward" @click="backward">
           <img src="@/assets/images/audio/backward.png" />
         </button>
         <button class="play" @click="play">
           <img v-show="isPlaying" src="@/assets/images/audio/pause.png" />
           <img v-show="!isPlaying" src="@/assets/images/audio/play.png" />
         </button>
-        <button @click="forward">
+        <button class="forward" @click="forward">
           <img src="@/assets/images/audio/forward.png" />
         </button>
         <button class="next" @click="next">
@@ -135,6 +135,8 @@ export default {
     toStringFrom(time) {
       let min = Math.floor(time / 60);
       let sec = Math.floor(time - min * 60);
+      if (isNaN(min)) min = 0;
+      if (isNaN(sec)) sec = 0;
       if (min < 10) {
         min = "0" + min;
       }
@@ -170,6 +172,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/base/mixins.scss";
 .music-player {
   position: relative;
   overflow: hidden !important;
@@ -272,19 +275,25 @@ export default {
     align-items: center;
 
     button {
-      width: 30px;
-      height: 30px;
+      width: 2.5rem;
+      height: 2.5rem;
       object-fit: contain;
       margin: 0 1rem;
 
       &.play {
-        transform: translateY(1px) scale(0.8);
+        transform: translateY(1px);
       }
 
       &.prev,
       &.next {
-        width: 22px;
-        height: 22px;
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+
+      &.forward,
+      &.backward {
+        width: 1.6rem;
+        height: 1.6rem;
       }
 
       img {
@@ -297,7 +306,7 @@ export default {
 
   .volume {
     width: 70%;
-    margin: 2rem auto 0 auto;
+    margin: 3rem auto 0 auto;
 
     .mute {
       transform: scale(0.85);
@@ -306,6 +315,12 @@ export default {
 
   .loading {
     width: 100%;
+    height: 100%;
+  }
+}
+
+@include mobile {
+  .music-player {
     height: 100%;
   }
 }
