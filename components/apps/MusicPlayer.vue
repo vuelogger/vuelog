@@ -17,7 +17,7 @@
         <Slider
           class="track"
           v-model="track"
-          :size="3"
+          :size="5"
           :max="99"
           @input="trackChange"
         >
@@ -258,7 +258,7 @@ export default {
     p {
       position: absolute;
       font-size: 1rem;
-      top: 100%;
+      top: 105%;
       &.curr {
         left: 0;
       }
