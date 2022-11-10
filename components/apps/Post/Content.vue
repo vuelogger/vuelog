@@ -24,16 +24,6 @@ export default {
   computed: {
     ...mapState("post", ["post", "categories"]),
   },
-  head() {
-    return {
-      link: [
-        {
-          rel: "stylesheet",
-          href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/vs2015.min.css",
-        },
-      ],
-    };
-  },
 };
 </script>
 
@@ -92,7 +82,7 @@ export default {
       line-height: 1.4;
       font-weight: bold;
       text-align: center;
-      text-shadow: -2px 2px 5px gray, 2px -2px 2px black;
+      text-shadow: 2px 2px 2px black, -2px -2px 2px gray;
     }
     .created,
     .updated {

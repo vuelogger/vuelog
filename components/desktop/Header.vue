@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <img class="header__logo" src="/logo.png" alt="logo" />
+    <NuxtLink to="/" class="header__logo">
+      <img src="/logo.png" alt="logo" />
+    </NuxtLink>
     <HeaderClock class="header__clock" :format="'MMM Do (ddd) A hh:mm'" />
   </header>
 </template>
@@ -24,6 +26,10 @@
     object-fit: contain;
     filter: drop-shadow(1px 1px 1px lightblue)
       drop-shadow(-1px -1px 1px lightblue) drop-shadow(-1px 1px 1px lightblue);
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__clock {
