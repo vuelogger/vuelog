@@ -40,6 +40,7 @@ export default {
       const name = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
       if (name) {
         this.$router.push(`/post/${name}`);
+        this.$store.dispatch("post/getPosts", name);
       }
     },
     resize() {

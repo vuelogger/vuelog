@@ -10,7 +10,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("apps", ["postMode"]),
+    ...mapState("apps", ["postMode", "postMode"]),
   },
   fetch() {
     this.$store.dispatch("post/getCategories");

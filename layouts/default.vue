@@ -23,5 +23,14 @@ export default {
       ],
     };
   },
+  // TODO : resize 시 포스트 창 가로 크기 맞추기
+  // mounted() {
+  //   window.addEventListener("resize", this.resize);
+  // },
+  // methods: {
+  //   resize() {
+  //     console.log("resize");
+  //   },
+  // },
 };
 </script>

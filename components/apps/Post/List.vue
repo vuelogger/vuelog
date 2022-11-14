@@ -1,8 +1,8 @@
 <template>
   <div class="list">
-    <ul>
+    <ul v-if="posts.length > 0">
       <li v-for="post of posts" :key="post.slug">
-        <NuxtLink :to="`/post/${post.category}/${post.slug}`">
+        <button @click="click(post.category, post.slug)">
           <div class="cover">
             <img v-if="post.cover" :src="post.cover" />
             <img v-else src="/logo.png" class="default" />
@@ -24,9 +24,7 @@
             </p>
             <div class="bottom">
               <div class="author">
-                <div class="logo">
-                  <img src="~/assets/images/lilpa.jpeg" />
-                </div>
+                <img class="logo" src="/logo.png" />
                 <p>
                   <span class="name">Vuelog</span>
                   <span class="created">
@@ -34,9 +32,32 @@
                   </span>
                 </p>
               </div>
+              <Tags :tags="post.tags" class="tags" />
             </div>
           </section>
-        </NuxtLink>
+        </button>
+      </li>
+    </ul>
+    <ul v-else>
+      <li v-for="n of 4" :key="n" class="skeleton">
+        <button>
+          <div class="cover"></div>
+          <section class="info">
+            <h2></h2>
+            <p class="desc"></p>
+            <p class="desc"></p>
+            <p class="desc"></p>
+            <div class="bottom">
+              <div class="author">
+                <div class="logo"></div>
+                <p>
+                  <span class="name"></span>
+                  <span class="created"></span>
+                </p>
+              </div>
+            </div>
+          </section>
+        </button>
       </li>
     </ul>
   </div>
@@ -48,40 +69,57 @@ export default {
   computed: {
     ...mapState("post", ["posts", "categories"]),
   },
+  methods: {
+    click(category, slug) {
+      this.$router.push(`/post/${category}/${slug}`);
+      this.$store.dispatch("post/getPost", slug);
+    },
+  },
+  fetch() {
+    this.$store.dispatch("post/getPosts", this.$route.params.category);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "~/assets/scss/base/mixins.scss";
+@import "~/assets/scss/base/keyframes.scss";
 .list {
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 42rem;
     padding: 3rem;
     gap: 8rem 3rem;
     margin: 0 auto;
     max-width: $post-max-width;
 
     li {
+      position: relative;
       display: flex;
       flex-direction: column;
-      background-color: white;
-      // box-shadow: 2px 4px 6px 2px lightgray;
-      // overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 2px 4px 6px 2px lightgray;
+      overflow: hidden;
       transition: all 0.4s;
-      > a {
+
+      > button {
         display: flex;
         flex-direction: column;
         height: 100%;
+        cursor: pointer;
+        line-break: anywhere;
         .cover {
           display: flex;
           justify-content: center;
           align-items: center;
+          width: 100%;
           height: 20rem;
           overflow: hidden;
           img {
             width: 100%;
             height: 100%;
+            object-fit: cover;
             transition: all 0.4s;
           }
 
@@ -114,13 +152,14 @@ export default {
 
           h2 {
             display: flex;
-            align-items: center;
             margin-top: 2rem;
             font-size: 1.8rem;
-            line-height: 1.3em;
+            line-height: 1.4em;
+
             img {
               height: 2rem;
               margin-right: 0.5rem;
+              height: 1.4em;
             }
           }
           .desc {
@@ -143,15 +182,7 @@ export default {
               .logo {
                 width: 3.5rem;
                 height: 3.5rem;
-                border-radius: 50%;
-                overflow: hidden;
-                border: 1px solid lightgray;
-                box-shadow: 2px 2px 2px gray;
-                img {
-                  width: 100%;
-                  height: 100%;
-                  object-fit: contain;
-                }
+                object-fit: contain;
               }
               p {
                 margin-left: 1.3rem;
@@ -169,16 +200,70 @@ export default {
                 }
               }
             }
+            .tags {
+              margin-left: auto;
+            }
           }
         }
       }
       &:hover {
-        box-shadow: 2px 4px 6px 2px gray;
-        // transform: translateY(-20px);
+        // box-shadow: 2px 4px 6px 2px gray;
+        transform: translateY(-20px);
         .cover {
           img {
             transform: scale(1.3);
           }
+        }
+      }
+
+      &.skeleton {
+        > button {
+          cursor: auto;
+          .cover {
+            @include skeletonLoading;
+          }
+          .info {
+            width: 100%;
+            box-sizing: border-box;
+            h2 {
+              width: 70%;
+              height: 2.8rem;
+              margin-bottom: 1rem;
+              @include skeletonLoading;
+            }
+            .desc {
+              width: 100%;
+              height: 1.3rem;
+              @include skeletonLoading;
+            }
+            .bottom {
+              .author {
+                width: 100%;
+                height: 3rem;
+
+                .logo {
+                  @include skeletonLoading;
+                  border-radius: 50%;
+                }
+
+                p {
+                  .name {
+                    @include skeletonLoading;
+                    width: 5rem;
+                    height: 1.3rem;
+                  }
+                  .created {
+                    @include skeletonLoading;
+                    width: 8rem;
+                    height: 1.4rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &:hover {
+          transform: none;
         }
       }
     }

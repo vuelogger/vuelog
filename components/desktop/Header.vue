@@ -22,13 +22,15 @@
   color: white;
 
   &__logo {
-    height: 50%;
-    object-fit: contain;
-    filter: drop-shadow(1px 1px 1px lightblue)
-      drop-shadow(-1px -1px 1px lightblue) drop-shadow(-1px 1px 1px lightblue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
     img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
+      filter: contrast(0) brightness(2);
     }
   }
 

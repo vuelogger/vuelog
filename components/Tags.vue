@@ -22,7 +22,6 @@ export default {
   flex-wrap: wrap;
   color: #7d80ff;
   font-size: 1.4rem;
-  filter: drop-shadow(2px 2px 2px black);
 
   &__img {
     height: 1.2em;

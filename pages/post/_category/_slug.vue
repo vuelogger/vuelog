@@ -4,80 +4,21 @@
 
 <script>
 export default {
-  head() {
-    if (this.post) {
-      return {
-        meta: [
-          {
-            hid: "twitter:title",
-            name: "twitter:title",
-            content: this.post.title,
-          },
-          {
-            hid: "og:title",
-            name: "og:title",
-            content: this.post.title,
-          },
-          {
-            hid: "og:image",
-            property: "og:image",
-            content: this.post.cover,
-          },
-          {
-            hid: "twitter:image",
-            name: "twitter:image",
-            content: this.post.cover,
-          },
-          {
-            hid: "og:url",
-            property: "og:url",
-            content: "/post/" + this.post.category + "/" + this.post.slug,
-          },
-          {
-            hid: "description",
-            name: "description",
-            content: this.post.description,
-          },
-          {
-            hid: "og:description",
-            property: "og:description",
-            content: this.post.description,
-          },
-          {
-            hid: "twitter:description",
-            name: "twitter:description",
-            content: this.post.description,
-          },
-          {
-            hid: "twitter:card",
-            name: "twitter:card",
-            content: "summary_large_image",
-          },
-        ],
-      };
-    }
-  },
-  async asyncData({ route, store }) {
-    const params = await route?.params;
+  asyncData({ route, store }) {
+    const params = route?.params;
     const category = params?.category;
     const slug = params?.slug;
-
     let mode = "category";
-    let post = null;
     if (slug) {
       mode = "content";
-      // Fetch에 넣고 싶었으나 nuxtlink와 같이 사용할 때
+      // nuxtlink와 같이 사용할 때
       // 이동 전의 $route.params 값을 가지고 있어서 api 불러오기 어렵다.
-      post = await store.dispatch("post/getPost", route.params.slug);
+      // nuxtlink는 client side 에서 동작하기 때문
     } else if (category) {
       mode = "list";
-      store.dispatch("post/getPosts", route.params.category);
     }
-
     store.commit("apps/updatePostMode", mode);
     store.commit("apps/open", "Post");
-
-    return { post };
   },
 };
 </script>
