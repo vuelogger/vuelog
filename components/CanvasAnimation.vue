@@ -39,8 +39,8 @@ export default {
     click(e) {
       const name = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
       if (name) {
+        this.$store.commit("post/setCategory", name);
         this.$router.push(`/post/${name}`);
-        this.$store.dispatch("post/getPosts", name);
       }
     },
     resize() {

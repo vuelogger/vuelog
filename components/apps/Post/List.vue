@@ -71,12 +71,16 @@ export default {
   },
   methods: {
     click(category, slug) {
+      this.$store.commit("post/setSlug", slug);
       this.$router.push(`/post/${category}/${slug}`);
-      this.$store.dispatch("post/getPost", slug);
     },
   },
   fetch() {
-    this.$store.dispatch("post/getPosts", this.$route.params.category);
+    let category = this.$route.params.category;
+    if (!category) {
+      category = this.$store.state.post.category;
+    }
+    this.$store.dispatch("post/getPosts", category);
   },
 };
 </script>

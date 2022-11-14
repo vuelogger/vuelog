@@ -8,12 +8,16 @@ export const state = () => ({
   page: 0,
   pageSize: 100,
   categories: [],
+  category: null,
+  slug: null,
 });
 
 export const mutations = {
   setPost: set("post"),
   setPosts: set("posts"),
   setCategories: set("categories"),
+  setSlug: set("slug"),
+  setCategory: set("category"),
 };
 
 export const actions = {

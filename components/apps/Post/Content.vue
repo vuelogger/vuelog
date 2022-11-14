@@ -1,6 +1,6 @@
 <template>
   <div class="post-content">
-    <template v-if="post.title">
+    <template v-if="post?.title">
       <div class="header">
         <div class="cover">
           <img :src="post.cover" />
@@ -102,7 +102,11 @@ export default {
     ...mapState("post", ["post", "categories"]),
   },
   fetch() {
-    this.$store.dispatch("post/getPost", this.$route.params.slug);
+    let slug = this.$route.params.slug;
+    if (!slug) {
+      slug = this.$store.state.post.slug;
+    }
+    this.$store.dispatch("post/getPost", slug);
   },
 };
 </script>
