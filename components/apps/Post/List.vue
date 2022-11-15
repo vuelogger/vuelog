@@ -1,5 +1,6 @@
 <template>
   <div class="list">
+    <AppsPostListHeader />
     <ul v-if="posts.length > 0">
       <li v-for="post of posts" :key="post.slug">
         <button @click="click(post.category, post.slug)">
@@ -12,27 +13,16 @@
               {{ post.oriCategory }}
             </h3>
             <h2>
-              <img
-                :src="
-                  require(`@/assets/images/apps/post/${post.oriCategory}.png`)
-                "
-              />
               <span>{{ post.title }}</span>
             </h2>
             <p class="desc">
               {{ post.description }}
             </p>
             <div class="bottom">
-              <div class="author">
-                <img class="logo" src="/logo.png" />
-                <p>
-                  <span class="name">Vuelog</span>
-                  <span class="created">
-                    {{ $moment(post.createdAt).format("YYYY.MM.DD") }}
-                  </span>
-                </p>
-              </div>
               <Tags :tags="post.tags" class="tags" />
+              <span class="created">
+                {{ $moment(post.createdAt).format("YYYY.MM.DD") }}
+              </span>
             </div>
           </section>
         </button>
@@ -69,6 +59,7 @@ export default {
   computed: {
     ...mapState("post", ["posts", "categories"]),
   },
+
   methods: {
     click(category, slug) {
       this.$store.commit("post/setSlug", slug);
@@ -80,7 +71,8 @@ export default {
     if (!category) {
       category = this.$store.state.post.category;
     }
-    this.$store.dispatch("post/getPosts", category);
+    this.$store.dispatch("post/getPosts", "");
+    // this.$store.dispatch("post/getPosts", category);
   },
 };
 </script>
@@ -93,7 +85,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: 42rem;
-    padding: 3rem;
+    padding: 8rem 3rem;
     gap: 8rem 3rem;
     margin: 0 auto;
     max-width: $post-max-width;
@@ -140,12 +132,13 @@ export default {
           flex-direction: column;
           padding: 1.6rem 2rem;
           position: relative;
+          text-align: left;
           .category {
             position: absolute;
             top: 0;
             display: inline-block;
             color: white;
-            background-color: #a770ff;
+            background-color: #d2c33b;
             border-radius: 1rem;
             font-size: 1.4rem;
             padding: 0.4em 1em;
@@ -159,6 +152,7 @@ export default {
             margin-top: 2rem;
             font-size: 1.8rem;
             line-height: 1.4em;
+            text-align: left;
 
             img {
               height: 2rem;
@@ -171,7 +165,7 @@ export default {
             color: gray;
             font-family: Arial, Helvetica, sans-serif;
             margin-top: 1.2rem;
-            @include textClip(3, 1.8em);
+            @include textClip(2, 1.8em);
           }
           .bottom {
             display: flex;
@@ -180,32 +174,10 @@ export default {
             padding-top: 2rem;
             margin-top: auto;
 
-            .author {
-              display: flex;
-              align-items: center;
-              .logo {
-                width: 3.5rem;
-                height: 3.5rem;
-                object-fit: contain;
-              }
-              p {
-                margin-left: 1.3rem;
-                display: flex;
-                flex-direction: column;
-                .name {
-                  font-size: 1.3rem;
-                  color: #333;
-                }
-                .created {
-                  font-size: 0.9rem;
-                  margin-left: auto;
-                  color: gray;
-                  margin-top: 0.6rem;
-                }
-              }
-            }
-            .tags {
+            .created {
               margin-left: auto;
+              font-size: 0.9rem;
+              color: gray;
             }
           }
         }

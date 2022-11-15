@@ -1,5 +1,5 @@
 <template>
-  <canvas :width="width" :height="height" @click="click"></canvas>
+  <canvas :width="width" :height="height"></canvas>
 </template>
 
 <script>
@@ -36,13 +36,13 @@ export default {
     },
   },
   methods: {
-    click(e) {
-      const name = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
-      if (name) {
-        this.$store.commit("post/setCategory", name);
-        this.$router.push(`/post/${name}`);
-      }
-    },
+    // click(e) {
+    //   const name = this.HillAni.click(this.ctx, e.offsetX, e.offsetY);
+    //   if (name) {
+    //     this.$store.commit("post/setCategory", name);
+    //     this.$router.push(`/post/${name}`);
+    //   }
+    // },
     resize() {
       this.HillAni.resize(this.width, this.height);
     },

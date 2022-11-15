@@ -22,7 +22,7 @@ export default class Character {
 
     this.rotation = null;
 
-    this.speed = 3 / this.canvasW + Math.random() * 2;
+    this.speed = Math.random() * Math.random() * 8;
   }
 
   resize(canvasW, canvasH) {
@@ -47,7 +47,7 @@ export default class Character {
         this.x -= this.speed;
         if (this.x < -this.width) {
           this.x = this.canvasW;
-          this.speed = 3 / this.canvasW + Math.random() * 2;
+          this.speed = Math.random() * Math.random() * 8;
         }
         const closest = this.getY(this.x, dots);
         this.y = closest.y;

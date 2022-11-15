@@ -67,13 +67,13 @@ export default {
 
 @keyframes cursor {
   0% {
-    border-right: 5px solid #ec4bff;
+    border-right: 5px solid #ffe04b;
   }
   50% {
     border-right: 5px solid transparent;
   }
   100% {
-    border-right: 5px solid #ec4bff;
+    border-right: 5px solid #ffe04b;
   }
 }
 h1 {
@@ -90,7 +90,7 @@ h1 {
     animation-name: cursor;
     animation-duration: 0.6s;
     animation-iteration-count: infinite;
-    color: #ec4bff;
+    color: #ffe04b;
     padding-right: 0.5rem;
     text-shadow: 3px 3px 2px #6a6a6a;
   }

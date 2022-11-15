@@ -1,8 +1,7 @@
 <template>
   <main class="post">
-    <AppsPostCategory v-if="postMode === 'category'" />
-    <AppsPostList v-else-if="postMode === 'list'" />
-    <AppsPostContent v-else-if="postMode === 'content'" />
+    <AppsPostList v-if="postMode === 'list'" />
+    <AppsPostContent v-else />
   </main>
 </template>
 
