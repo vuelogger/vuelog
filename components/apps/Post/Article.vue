@@ -255,7 +255,17 @@ export default {
         color: black;
         text-transform: uppercase;
         padding: 0.2em 0.5em;
-        background-color: #e4e464;
+        background-color: gray;
+
+        &.html {
+          background-color: #ff9595;
+        }
+        &.css {
+          background-color: #959dff;
+        }
+        &.javascript {
+          background-color: #e4e464;
+        }
       }
     }
 
