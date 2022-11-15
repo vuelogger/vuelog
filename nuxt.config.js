@@ -26,7 +26,6 @@ const routes = async () => {
       }
     }
   }
-  console.log(result);
   return result;
 };
 
@@ -147,6 +146,7 @@ export default {
 
   sitemap: {
     //https://github.com/nuxt-community/sitemap-module/issues/106#issuecomment-603533758
+    hostname: "https://vuelog.dev",
     routes,
   },
   env: {
