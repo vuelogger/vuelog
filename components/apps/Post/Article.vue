@@ -234,7 +234,7 @@ export default {
     display: flex;
     flex-direction: column;
     position: relative;
-    font-family: "Courier New", Courier, monospace;
+    font-family: sans-serif;
 
     .head {
       width: 100%;
