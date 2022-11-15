@@ -8,5 +8,7 @@ export default ({ route, $device, store }) => {
     layout = "mobile";
   }
 
-  route.matched[0].components.default.options.layout = layout;
+  if (route.matched[0]) {
+    route.matched[0].components.default.options.layout = layout;
+  }
 };

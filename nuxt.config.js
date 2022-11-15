@@ -14,17 +14,19 @@ const routes = async () => {
           currPage: 0,
         },
       });
-      const category = c.category === "" ? "all" : c.category;
 
-      result.push("/post/" + category);
+      result.push({
+        url: "/post/" + c.category,
+      });
       for (const p of postRes.data.data) {
         result.push({
-          url: "/post/" + category + "/" + p.slug,
+          url: "/post/" + p.category + "/" + p.slug,
           lastmod: p.updatedAt,
         });
       }
     }
   }
+  console.log(result);
   return result;
 };
 
