@@ -6,6 +6,12 @@ export const state = () => ({
       minW: 500,
       minH: 400,
     },
+    Twitter: {
+      w: 500,
+      h: 800,
+      minW: 300,
+      minH: 500,
+    },
     // GuestBook: {
     //   w: 300,
     //   h: 200,
