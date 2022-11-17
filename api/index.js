@@ -1,5 +1,6 @@
 import rateLimit from "express-rate-limit";
 import { MongoDB } from "./utils/mongo";
+import Twitter from "./utils/twitter";
 
 console.log("Server Initializing...");
 
@@ -56,6 +57,7 @@ app.get("/diary", async (req, res) => {
     parseInt(req.query.pageSize),
     parseInt(req.query.page)
   );
+
   res.json(result);
 });
 
@@ -64,6 +66,10 @@ app.get("/musics", async (req, res) => {
   const result = await db.getMusics();
 
   res.json(result);
+});
+
+app.get("/tweet/user", async (req, res) => {
+  res.json(await Twitter.getUserData());
 });
 
 module.exports = app;

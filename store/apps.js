@@ -7,7 +7,7 @@ export const state = () => ({
       minH: 400,
     },
     Twitter: {
-      w: 500,
+      w: 400,
       h: 800,
       minW: 300,
       minH: 500,
