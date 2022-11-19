@@ -18,11 +18,6 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      openedName: null,
-    };
-  },
   computed: {
     ...mapState("apps", ["apps"]),
   },

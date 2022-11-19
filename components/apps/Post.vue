@@ -1,5 +1,6 @@
 <template>
   <main class="post">
+    <AppsPostSidebar />
     <AppsPostList v-if="postMode === 'list'" />
     <AppsPostContent v-else />
   </main>
@@ -9,7 +10,7 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("apps", ["postMode", "postMode"]),
+    ...mapState("post", ["postMode"]),
   },
   fetch() {
     this.$store.dispatch("post/getCategories");

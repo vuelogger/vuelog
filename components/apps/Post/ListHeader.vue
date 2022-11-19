@@ -18,14 +18,19 @@ export default {
   computed: {
     height() {
       if (this.$device.isMobileOrTablet) {
-        return window ? window.innerHeight : 500;
+        return window ? window.innerHeight - this.appHead : 500;
       } else {
         return this.$store.state.apps.apps.Post.h - this.appHead - 2; // border (1)
       }
     },
   },
+
   created() {
-    this.appHead = this.$getScssLength("appHeadHeight");
+    if (this.$device.isMobileOrTablet) {
+      this.appHead = this.$getScssLength("mobileHeaderHeight");
+    } else {
+      this.appHead = this.$getScssLength("appHeadHeight");
+    }
   },
 };
 </script>
@@ -34,7 +39,7 @@ export default {
 header {
   position: relative;
   height: 100%;
-  padding: 10rem;
+  padding: 10rem 8rem;
   box-sizing: border-box;
 
   .canvas {

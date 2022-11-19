@@ -11,7 +11,7 @@ export default {
     if (slug) {
       mode = "content";
     }
-    store.commit("apps/updatePostMode", mode);
+    store.commit("post/updatePostMode", mode);
     store.commit("apps/open", "Post");
   },
 };

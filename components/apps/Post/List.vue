@@ -1,6 +1,8 @@
 <template>
   <div class="list">
     <AppsPostListHeader />
+    <h1 class="title">{{ title }}</h1>
+    <h4 class="total">( {{ total }} )</h4>
     <ul v-if="posts.length > 0">
       <li v-for="post of posts" :key="post.slug">
         <button @click="click(post.category, post.slug)">
@@ -57,7 +59,21 @@
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState("post", ["posts", "categories"]),
+    ...mapState("post", ["posts", "categories", "category"]),
+    title() {
+      for (const c of this.categories) {
+        if (c.category == this.category) {
+          return c.oriCategory;
+        }
+      }
+    },
+    total() {
+      for (const c of this.categories) {
+        if (c.category === this.category) {
+          return c.count;
+        }
+      }
+    },
   },
 
   methods: {
@@ -67,12 +83,15 @@ export default {
     },
   },
   fetch() {
-    let category = this.$route.params.category;
-    if (!category) {
-      category = this.$store.state.post.category;
+    // Post에서 온 것이면 하지 않는다.
+    if (!this.$route.params.slug) {
+      let category = this.$route.params.category;
+      if (!category) {
+        category = this.category;
+      }
+
+      this.$store.dispatch("post/getPosts", category);
     }
-    this.$store.dispatch("post/getPosts", "");
-    // this.$store.dispatch("post/getPosts", category);
   },
 };
 </script>
@@ -81,11 +100,29 @@ export default {
 @import "~/assets/scss/base/mixins.scss";
 @import "~/assets/scss/base/keyframes.scss";
 .list {
+  .title {
+    font-size: 5rem;
+    margin-top: 7rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 0px rgb(109, 109, 255), 0px 0px 2px black,
+      0px 0px 8px gray;
+  }
+
+  .total {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.6rem;
+    color: gray;
+  }
+
   ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: 42rem;
-    padding: 8rem 3rem;
+    padding: 6rem 3rem;
     gap: 8rem 3rem;
     margin: 0 auto;
     max-width: $post-max-width;

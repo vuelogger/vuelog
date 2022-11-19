@@ -1,6 +1,8 @@
 <template>
   <div class="app" :style="style">
-    <div class="app__head" @dblclick="headDblClick"></div>
+    <div class="app__head" @dblclick="headDblClick">
+      <DynamicComponent :name="name" path="./apps/header" />
+    </div>
     <DesktopAppBtns @close="close" @minimize="minimize" @maximize="maximize" />
     <div class="app__body">
       <DynamicComponent :name="name" path="./apps" />
@@ -101,11 +103,13 @@ export default {
   &__head {
     height: $app-head-height;
     background-color: $key-color;
+    padding-left: 10rem;
   }
 
   &__body {
     width: 100%;
     height: calc(100% - #{$app-head-height});
+    background-color: white;
 
     > * {
       width: 100%;

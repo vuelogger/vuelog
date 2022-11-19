@@ -3,12 +3,28 @@
     <button @click="toHome" class="header__logo">
       <img src="/logo.png" alt="logo" />
     </button>
-    <p class="header__title">Vue로 만드는 블로그 세상</p>
+    <p class="header__title">Vue로 만드는 세상</p>
+    <div class="right">
+      <template v-if="compName">
+        <DynamicComponent :name="compName" path="./apps/header" />
+      </template>
+    </div>
   </header>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState("apps", ["apps"]),
+    compName() {
+      for (const name in this.apps) {
+        if (name == "Post" && this.apps[name].opened) {
+          return name;
+        }
+      }
+    },
+  },
   methods: {
     toHome() {
       this.$store.commit("apps/closeAll");
@@ -44,6 +60,10 @@ export default {
   &__title {
     margin-left: 1rem;
     font-weight: bold;
+  }
+  .right {
+    height: 100%;
+    margin-left: auto;
   }
 }
 </style>

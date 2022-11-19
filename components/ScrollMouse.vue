@@ -1,9 +1,9 @@
 <template>
-  <button class="scroll-mouse">
+  <div class="scroll-mouse">
     <div class="img"></div>
     <p>Scroll</p>
     <img src="@/assets/images/ico/right_arrow.svg" />
-  </button>
+  </div>
 </template>
 
 <style lang="scss">
@@ -12,7 +12,6 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  cursor: pointer;
 
   .img {
     position: relative;

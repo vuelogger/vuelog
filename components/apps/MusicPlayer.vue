@@ -181,6 +181,10 @@ export default {
   padding: 1rem 4rem 4rem 4rem;
   box-sizing: border-box;
 
+  & > * {
+    position: relative;
+  }
+
   .bg {
     position: absolute;
     top: 0;
@@ -190,7 +194,7 @@ export default {
     object-fit: cover;
     filter: blur(8px) brightness(0.3);
     transform: scale(1.2);
-    z-index: -1;
+    z-index: 0;
     background-color: #1e1e1e;
   }
 

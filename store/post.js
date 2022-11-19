@@ -8,8 +8,10 @@ export const state = () => ({
   page: 0,
   pageSize: 100,
   categories: [],
-  category: null,
+  category: "",
+  sidebarShow: false,
   slug: null,
+  postMode: null,
 });
 
 export const mutations = {
@@ -17,6 +19,8 @@ export const mutations = {
   setPosts: set("posts"),
   setCategories: set("categories"),
   setSlug: set("slug"),
+  setSidebarShow: set("sidebarShow"),
+  updatePostMode: set("postMode"),
   setCategory: set("category"),
 };
 
@@ -32,6 +36,7 @@ export const actions = {
     return result;
   },
   async getPosts({ state, commit }, category) {
+    commit("setCategory", category);
     commit("setPosts", []);
     const result = await this.$axios.$get("/api/posts", {
       params: {

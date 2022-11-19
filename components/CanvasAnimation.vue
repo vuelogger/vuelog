@@ -21,7 +21,7 @@ export default {
     },
     height() {
       if (this.$device.isMobileOrTablet) {
-        return window ? window.innerHeight : 500;
+        return window ? window.innerHeight - this.appHead : 500;
       } else {
         return this.$store.state.apps.apps.Post.h - this.appHead - 2; // border (1)
       }
@@ -53,7 +53,11 @@ export default {
     },
   },
   created() {
-    this.appHead = this.$getScssLength("appHeadHeight");
+    if (this.$device.isMobileOrTablet) {
+      this.appHead = this.$getScssLength("mobileHeaderHeight");
+    } else {
+      this.appHead = this.$getScssLength("appHeadHeight");
+    }
   },
   mounted() {
     this.ctx = this.$el.getContext("2d");
