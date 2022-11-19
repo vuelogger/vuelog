@@ -46,7 +46,15 @@ export default {
     },
   },
   mounted() {
-    window.addEventListener("keydown", this.close);
+    window.addEventListener(
+      "keydown",
+      function (e) {
+        console.log(e.key);
+        if (e.key == "Escape") {
+          this.close();
+        }
+      }.bind(this)
+    );
   },
   beforeDestroy() {
     window.removeEventListener("keydown", this.close);
