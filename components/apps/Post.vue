@@ -15,9 +15,6 @@ export default {
   fetch() {
     this.$store.dispatch("post/getCategories");
   },
-  updated() {
-    this.$el.scrollTo(0, 0);
-  },
 };
 </script>
 
@@ -30,6 +27,7 @@ export default {
   .post {
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
   }
 }
 </style>

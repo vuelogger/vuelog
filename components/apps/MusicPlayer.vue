@@ -156,7 +156,6 @@ export default {
   },
   async fetch() {
     await this.$store.dispatch("music/getMusics");
-    console.log(this.musics[this.idx].src);
     this.audio = new Audio(this.musics[this.idx].src);
     this.audio.ontimeupdate = this.updateTime;
     this.audio.onloadedmetadata = this.updateTime;

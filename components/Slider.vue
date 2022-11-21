@@ -85,7 +85,6 @@ export default {
         newVal =
           ((x - rect.left) / rect.width) * (this.max - this.min) + this.min;
       }
-      console.log(newVal);
       this.$emit("input", newVal);
     },
     startControl(e) {

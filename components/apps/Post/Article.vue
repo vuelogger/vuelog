@@ -16,11 +16,8 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 3rem auto 0 auto;
-  width: 100%;
-  max-width: $post-max-width;
+
   font-size: 1.6rem;
-  padding: 0 2rem;
-  box-sizing: border-box;
   font-weight: normal;
   color: #2b3141;
   font-family: NexonMaplestory;

@@ -1,49 +1,33 @@
 <template>
   <div class="post-content">
-    <template v-if="post?.title">
-      <div class="header">
-        <div class="cover">
-          <img :src="post.cover" />
-        </div>
-        <p class="category">{{ post.oriCategory }}</p>
-        <h1>{{ post.title }}</h1>
-        <p class="created">
-          <img src="@/assets/images/ico/calendar.png" />
-          <span>
-            {{ $moment(post.createdAt).format("YYYY.MM.DD hh:mm") }}
-          </span>
-        </p>
-        <div class="profile">
-          <div class="img">
-            <img src="/logo.png" />
+    <ContentHeader :post="post" />
+    <Tags v-if="post?.title" class="tags" :tags="post.tags" />
+    <div class="wrapper">
+      <template v-if="post?.title">
+        <Article :body="post.body"></Article>
+      </template>
+
+      <!-- Loading -->
+      <template v-else>
+        <div class="skeleton">
+          <div class="body">
+            <div class="title"></div>
+            <p v-for="n of 10" :key="n"></p>
           </div>
-          <span>Vuelog</span>
         </div>
-      </div>
-
-      <Tags class="tags" :tags="post.tags" />
-
-      <Article :body="post.body"></Article>
-    </template>
-
-    <template v-else>
-      <div class="skeleton">
-        <div class="header"></div>
-
-        <div class="body">
-          <div class="title"></div>
-          <p v-for="n of 10" :key="n"></p>
-        </div>
-      </div>
-    </template>
+      </template>
+    </div>
+    <RelatedArticles v-if="post?.category" :category="post.category" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import ContentHeader from "@/components/apps/Post/ContentHeader.vue";
 import Article from "@/components/apps/Post/Article.vue";
+import RelatedArticles from "@/components/apps/Post/RelatedArticles.vue";
 export default {
-  components: { Article },
+  components: { ContentHeader, Article, RelatedArticles },
   head() {
     if (this.post) {
       return {
@@ -99,14 +83,16 @@ export default {
   },
 
   computed: {
-    ...mapState("post", ["post", "categories"]),
+    ...mapState("post", ["post", "posts", "categories"]),
   },
   fetch() {
     let slug = this.$route.params.slug;
     if (!slug) {
       slug = this.$store.state.post.slug;
     }
-    this.$store.dispatch("post/getPost", slug);
+    this.$store.dispatch("post/getPost", slug).then(() => {
+      document.querySelector(".post").scrollTo(0, 0);
+    });
   },
 };
 </script>
@@ -117,102 +103,6 @@ export default {
 .post-content {
   width: 100%;
   height: 100%;
-  .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 50rem;
-    max-height: 100%;
-    color: #eee;
-    font-size: 1.5rem;
-    .cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: blur(4px);
-        transform: scale(1.2);
-      }
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #1a1a1a9c;
-      }
-    }
-    & > * {
-      position: relative;
-    }
-    .category {
-      font-size: 1.3em;
-      margin-bottom: 1rem;
-      background-color: #59cea1;
-      border-radius: 4px;
-      line-height: 1;
-      color: white;
-      padding: 0.2em 0.5em;
-    }
-    h1 {
-      width: 80%;
-      font-size: 2.7em;
-      margin-top: 1rem;
-      position: relative;
-      line-height: 1.4;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 2px 2px 2px black, -2px -2px 2px gray;
-      margin-bottom: 1rem;
-    }
-
-    .created {
-      color: lightgray;
-      display: flex;
-      align-items: center;
-      margin-left: 2rem;
-      margin-top: 2rem;
-      img {
-        height: 2rem;
-        margin-right: 1rem;
-      }
-    }
-
-    .profile {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.7rem;
-      color: #eee;
-      margin-top: 1.5rem;
-      .img {
-        filter: drop-shadow(0px 0px 3px white) drop-shadow(0px 0px 3px white)
-          drop-shadow(0px 0px 3px white) drop-shadow(0px 0px 3px white);
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        margin-right: 1rem;
-        overflow: hidden;
-        img {
-          width: 80%;
-          height: 80%;
-          object-fit: contain;
-        }
-      }
-    }
-  }
 
   .tags {
     margin-left: auto;
@@ -221,37 +111,41 @@ export default {
     width: fit-content;
   }
 
-  .skeleton {
-    height: 100%;
+  .wrapper {
+    width: 100%;
+    max-width: $post-max-width;
+    box-sizing: border-box;
+    padding: 0 2rem 5rem 2rem;
+    margin: 0 auto;
 
-    .header {
-      @include skeletonLoading;
-    }
-    .body {
-      width: 100%;
-      max-width: $post-max-width;
-      padding: 0 2rem;
-      box-sizing: border-box;
-      margin: 3rem auto;
-
-      .title {
-        @include skeletonLoading;
-        width: 50%;
-        height: 4rem;
-        margin-bottom: 3rem;
-      }
-      p {
-        @include skeletonLoading;
-        height: 1.6rem;
+    .skeleton {
+      height: 100%;
+      .body {
         width: 100%;
-        margin-top: 1rem;
-        &:nth-of-type(2) {
-          width: 60%;
+        max-width: $post-max-width;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        margin: 3rem auto;
+
+        .title {
+          @include skeletonLoading;
+          width: 50%;
+          height: 4rem;
           margin-bottom: 3rem;
         }
-        &:nth-of-type(6) {
-          width: 30%;
-          margin-bottom: 5rem;
+        p {
+          @include skeletonLoading;
+          height: 1.6rem;
+          width: 100%;
+          margin-top: 1rem;
+          &:nth-of-type(2) {
+            width: 60%;
+            margin-bottom: 3rem;
+          }
+          &:nth-of-type(6) {
+            width: 30%;
+            margin-bottom: 5rem;
+          }
         }
       }
     }

@@ -49,7 +49,6 @@ export default {
     window.addEventListener(
       "keydown",
       function (e) {
-        console.log(e.key);
         if (e.key == "Escape") {
           this.close();
         }
