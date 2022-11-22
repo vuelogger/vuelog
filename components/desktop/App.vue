@@ -86,14 +86,18 @@ export default {
     window.addEventListener(
       "resize",
       function () {
-        this.$store.commit("apps/updateRect", {
-          name: this.name,
-          x: this.boundary.left,
-          y: this.boundary.top,
-          w: window.innerWidth - this.boundary.left,
-          h: window.innerHeight - this.boundary.top,
-        });
-        this.isMaximized = true;
+        const currRect = this.apps[this.name];
+        const newW = window.innerWidth - currRect.x;
+        if (currRect.minW < newW) {
+          this.$store.commit("apps/updateRect", {
+            name: this.name,
+            x: currRect.x,
+            y: currRect.y,
+            w: window.innerWidth - currRect.x,
+            h: currRect.h,
+          });
+          this.isMaximized = false;
+        }
       }.bind(this)
     );
   },
