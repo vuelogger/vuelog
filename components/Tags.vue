@@ -1,7 +1,9 @@
 <template>
   <div class="tag" v-if="tags.length > 0">
-    <img class="tag__img" src="~/assets/images/ico/tag.svg" alt="tag" />
-    <p class="tag__item" v-for="tag of tags" :key="tag">{{ tag }}</p>
+    <p class="tag__item" v-for="tag of tags" :key="tag">
+      <img src="~/assets/images/ico/tag.svg" />
+      <span>{{ tag }}</span>
+    </p>
   </div>
 </template>
 
@@ -20,16 +22,25 @@ export default {
 .tag {
   display: flex;
   flex-wrap: wrap;
-  color: #7d80ff;
   font-size: 1.4rem;
 
-  &__img {
-    height: 1.2em;
-    margin-right: 0.5rem;
-  }
-
   &__item {
+    display: flex;
+    align-items: center;
     margin-left: 0.5rem;
+    color: black;
+    padding: 0.4em 0.7em;
+    border-radius: 8px;
+    background-color: rgb(218, 218, 218);
+    cursor: pointer;
+
+    img {
+      height: 1.2rem;
+      margin-right: 0.5rem;
+    }
+    &:hover {
+      filter: invert(1);
+    }
   }
 }
 </style>

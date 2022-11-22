@@ -48,7 +48,7 @@ export default {
           slidesPerView: 1,
           spaceBetween: 30,
           breakpoints: {
-            1024: {
+            768: {
               slidesPerView: 2,
             },
           },

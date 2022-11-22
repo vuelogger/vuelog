@@ -5,6 +5,7 @@
         <img :src="post.cover" />
       </div>
       <p class="category">{{ post.oriCategory }}</p>
+
       <h1>{{ post.title }}</h1>
       <p class="created">
         <img src="@/assets/images/ico/calendar.png" />

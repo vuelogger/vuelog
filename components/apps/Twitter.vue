@@ -59,7 +59,6 @@ export default {
       loaded: false,
     };
   },
-  head() {},
   fetch() {
     this.$axios.$get("/api/tweet/user").then(
       function (data) {

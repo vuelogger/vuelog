@@ -82,6 +82,21 @@ export default {
       }, 500);
     },
   },
+  mounted() {
+    window.addEventListener(
+      "resize",
+      function () {
+        this.$store.commit("apps/updateRect", {
+          name: this.name,
+          x: this.boundary.left,
+          y: this.boundary.top,
+          w: window.innerWidth - this.boundary.left,
+          h: window.innerHeight - this.boundary.top,
+        });
+        this.isMaximized = true;
+      }.bind(this)
+    );
+  },
 };
 </script>
 

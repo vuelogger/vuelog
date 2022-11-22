@@ -16,6 +16,7 @@
           </div>
         </div>
       </template>
+      <Comment />
     </div>
     <RelatedArticles v-if="post?.category" :category="post.category" />
   </div>
@@ -26,8 +27,9 @@ import { mapState } from "vuex";
 import ContentHeader from "@/components/apps/Post/ContentHeader.vue";
 import Article from "@/components/apps/Post/Article.vue";
 import RelatedArticles from "@/components/apps/Post/RelatedArticles.vue";
+import Comment from "@/components/apps/Post/Comment.vue";
 export default {
-  components: { ContentHeader, Article, RelatedArticles },
+  components: { ContentHeader, Article, RelatedArticles, Comment },
   head() {
     if (this.post) {
       return {
