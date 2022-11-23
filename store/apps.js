@@ -37,7 +37,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  init(state) {
+  desktopInit(state) {
     const top = this.$getScssLength("headerHeight");
     const left =
       this.$getScssLength("dockWidth") +
@@ -46,17 +46,22 @@ export const mutations = {
 
     state.boundary = { top, left };
 
-    for (const app in state.apps) {
+    for (const name in state.apps) {
       state.maxZIndex += 1;
-      state.apps[app] = {
-        ...state.apps[app],
-        ...{
-          opened: false,
-          minimized: false,
-          x: left,
-          y: top,
-          zIndex: state.maxZIndex,
-        },
+      state.apps[name] = {
+        ...state.apps[name],
+        opened: false,
+        minimized: false,
+        x: left,
+        y: top,
+        zIndex: state.maxZIndex,
+      };
+    }
+  },
+  mobileInit(state) {
+    for (const name in state.apps) {
+      state.apps[name] = {
+        opened: false,
       };
     }
   },

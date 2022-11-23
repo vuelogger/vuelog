@@ -23,11 +23,4 @@ export default {
 .post {
   background-color: white;
 }
-@include mobile {
-  .post {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-}
 </style>
