@@ -80,7 +80,6 @@ export default {
     text-shadow: 2px 2px 2px lightgrey;
     font-weight: bold;
   }
-
   .swiper {
     width: 100%;
     margin-top: 3rem;

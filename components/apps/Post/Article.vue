@@ -79,6 +79,7 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        text-align: right;
         width: 50%;
 
         .h3 {
@@ -142,12 +143,13 @@ export default {
 
   .bookmark {
     margin: 2rem 0;
+    line-height: 1.4;
     display: flex;
     border-radius: 8px;
-    background: linear-gradient(to right, #f9f9fe, white);
     overflow: hidden;
     box-shadow: 4px 4px 10px 2px gray;
     transition: all 0.4s;
+    background-color: #f7f8ff;
 
     &__left {
       flex: 5;
@@ -249,10 +251,14 @@ export default {
       }
       .language {
         line-height: 1;
-        color: black;
+        color: white;
+        text-shadow: 1px 1px 3px #5f5f5f;
         text-transform: uppercase;
-        padding: 0.2em 0.5em;
+        padding: 0.3em 0.6em;
         background-color: gray;
+        font-weight: bold;
+        border-radius: 6px;
+        margin: 0;
 
         &.html {
           background-color: #ff9595;
@@ -283,13 +289,9 @@ export default {
     margin: 3rem 0;
   }
 
-  > ul,
-  ol {
-    margin: 1rem 0;
-  }
-
   ul,
   ol {
+    margin: 1rem 0;
     padding-left: 3rem;
     list-style: disc;
     li {
@@ -303,7 +305,7 @@ export default {
 
   em {
     color: #507ed1;
-    box-shadow: inset 0 -10px 0 #74a7ff2b;
+    box-shadow: inset 0 -7px 0 #74a7ff2b;
   }
 
   p {
@@ -322,6 +324,23 @@ export default {
     width: fit-content;
     margin: 3rem auto;
     border-radius: 8px;
+  }
+}
+@include mobile {
+  .post-content-article {
+    line-break: anywhere;
+
+    > ul,
+    > ol {
+      padding-left: 1.5rem;
+    }
+
+    .bookmark {
+      font-size: 1.3rem;
+      &__left {
+        padding: 2rem 3rem;
+      }
+    }
   }
 }
 </style>
