@@ -20,7 +20,7 @@
     </ul>
     <div
       class="footer"
-      @touchstart="touchstart"
+      @mousedown="touchstart"
       @touchend="touchend"
       @touchmove="touchmove"
     ></div>
@@ -91,12 +91,14 @@ export default {
 
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
+      console.log(x, y);
       this.rect = this.getRect(x, y);
     },
     touchmove(e) {
       if (this.startAni) {
         const x = e.changedTouches[0].clientX;
         const y = e.changedTouches[0].clientY;
+        console.log(x, y);
         this.rect = this.getRect(x, y);
       }
     },
@@ -104,6 +106,7 @@ export default {
       if (this.startAni) {
         const x = e.changedTouches[0].clientX;
         const y = e.changedTouches[0].clientY;
+        console.log(x, y);
 
         const duration = 150;
         // 반 이상 넘어가면 닫아버림
