@@ -20,7 +20,7 @@
     </ul>
     <div
       class="footer"
-      @mousedown="touchstart"
+      @touchstart="touchstart"
       @touchend="touchend"
       @touchmove="touchmove"
     ></div>
@@ -212,7 +212,7 @@ $appWidth: calc((100vw - #{$padding} * 2) / 4);
   .footer {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: env(safe-area-inset-bottom);
     width: 100%;
     height: 5%;
     z-index: 1000;
