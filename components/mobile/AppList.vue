@@ -213,6 +213,7 @@ $appWidth: calc((100vw - #{$padding} * 2) / 4);
     position: absolute;
     left: 0;
     bottom: env(safe-area-inset-bottom);
+    bottom: constant(safe-area-inset-bottom);
     width: 100%;
     height: 5%;
     z-index: 1000;
