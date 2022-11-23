@@ -220,9 +220,10 @@ export default {
 
   :not(pre) > code {
     padding: 0.2em 0.4em;
-    background-color: #d8ffd8;
+    background-color: #e5e5e5;
+    color: black;
     border-radius: 6px;
-    box-shadow: 2px 2px 2px lightgrey;
+    box-shadow: 1px 1px 1px lightgrey;
     margin-right: 0.2rem;
   }
 

@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/base/mixins";
 header {
   position: relative;
   height: 100%;
@@ -61,6 +62,11 @@ header {
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
+  }
+}
+@include mobile {
+  header {
+    padding: 10rem 4rem;
   }
 }
 </style>
