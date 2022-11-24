@@ -52,12 +52,15 @@
         </button>
       </li>
     </ul>
+    <Pagination />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import Pagination from "@/components/apps/Post/Pagination";
 export default {
+  components: { Pagination },
   computed: {
     ...mapState("post", ["posts", "categories", "category"]),
     title() {
@@ -90,6 +93,7 @@ export default {
         category = this.category;
       }
 
+      this.$store.commit("post/setPage", 0);
       this.$store.dispatch("post/getPosts", category);
     }
   },
@@ -213,7 +217,6 @@ export default {
 
             .created {
               margin-left: auto;
-              font-size: 0.9rem;
               color: gray;
             }
           }

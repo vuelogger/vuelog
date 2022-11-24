@@ -2,7 +2,7 @@
   <div class="scroll-mouse">
     <div class="img"></div>
     <p>Scroll</p>
-    <img src="@/assets/images/ico/right_arrow.svg" />
+    <img src="@/assets/images/ico/right-arrow.svg" />
   </div>
 </template>
 
@@ -40,7 +40,8 @@
 
   img {
     transform: rotate(90deg);
-    width: 5rem;
+    width: 1.2rem;
+    margin: 1.5rem;
     animation: bounce 1.5s infinite;
   }
 }

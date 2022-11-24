@@ -27,8 +27,9 @@ export default {
     },
     changeCategory(category) {
       this.close();
-      this.$router.push("/post/" + category);
+      this.$store.commit("post/setPage", 0);
       this.$store.dispatch("post/getPosts", category);
+      this.$router.push("/post/" + category);
     },
     categoryStyle(i) {
       const total = this.categories.length;

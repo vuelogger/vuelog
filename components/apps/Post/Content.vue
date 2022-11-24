@@ -6,6 +6,7 @@
       <template v-if="post?.title">
         <Article :body="post.body"></Article>
         <Comment />
+        <RelatedArticles v-if="post?.category" :category="post.category" />
       </template>
 
       <!-- Loading -->
@@ -18,7 +19,6 @@
         </div>
       </template>
     </div>
-    <RelatedArticles v-if="post?.category" :category="post.category" />
   </div>
 </template>
 

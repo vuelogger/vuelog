@@ -6,7 +6,7 @@ export const state = () => ({
   post: null,
   posts: [],
   page: 0,
-  pageSize: 100,
+  pageSize: 4,
   categories: [],
   category: "",
   sidebarShow: false,
@@ -22,6 +22,8 @@ export const mutations = {
   setSidebarShow: set("sidebarShow"),
   updatePostMode: set("postMode"),
   setCategory: set("category"),
+  setPage: set("page"),
+  setPageSize: set("pageSize"),
 };
 
 export const actions = {
