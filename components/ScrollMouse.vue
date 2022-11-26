@@ -40,9 +40,10 @@
 
   img {
     transform: rotate(90deg);
-    width: 1.2rem;
+    width: 1rem;
     margin: 1.5rem;
     animation: bounce 1.5s infinite;
+    filter: invert(1);
   }
 }
 </style>
