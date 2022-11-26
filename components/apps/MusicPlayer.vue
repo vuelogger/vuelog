@@ -1,7 +1,7 @@
 <template>
   <div class="music-player">
     <template v-if="music">
-      <img class="bg" :src="music.image" />
+      <img class="bg" :src="music.image" @load="imageLoaded = true" />
 
       <div class="image">
         <div class="inner">
@@ -68,7 +68,19 @@
         </button> -->
       </div>
     </template>
-    <div class="loading" v-else></div>
+    <div class="loading" v-show="!imageLoaded">
+      <div class="music-player">
+        <div class="skel-image"></div>
+        <div class="title"></div>
+        <div class="artist"></div>
+        <div class="track"></div>
+        <div class="controller">
+          <div class="block"></div>
+          <div class="center"></div>
+          <div class="block"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,6 +96,7 @@ export default {
       track: 0,
       currTime: "00:00",
       totalTime: "00:00",
+      imageLoaded: false,
     };
   },
   computed: {
@@ -317,8 +330,67 @@ export default {
   }
 
   .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background-color: white;
+
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .skel-image {
+        width: 70%;
+        aspect-ratio: 1;
+        margin-top: auto;
+        margin-bottom: auto;
+        border-radius: 50%;
+        @include skeletonLoading;
+      }
+      .title {
+        height: 2rem;
+        width: 80%;
+        border-radius: 1rem;
+        @include skeletonLoading;
+      }
+
+      .artist {
+        height: 1.5rem;
+        width: 60%;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        @include skeletonLoading;
+      }
+
+      .track {
+        height: 0.5rem;
+        width: 100%;
+        margin-top: 2rem;
+        border-radius: 4rem;
+        @include skeletonLoading;
+      }
+
+      .controller {
+        width: 40%;
+        height: 4rem;
+        margin-top: 1rem;
+
+        .block {
+          width: 20%;
+          height: 100%;
+          @include skeletonLoading;
+        }
+        .center {
+          width: 30%;
+          height: 100%;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          @include skeletonLoading;
+        }
+      }
+    }
   }
 }
 

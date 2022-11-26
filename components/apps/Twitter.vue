@@ -211,15 +211,14 @@ export default {
     padding: 0 2rem 2rem 2rem;
     box-sizing: border-box;
 
+    background-color: #222;
+
     .loading {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      padding: 2rem;
       box-sizing: border-box;
       z-index: -1;
+      background-color: #222;
 
       li {
         display: flex;

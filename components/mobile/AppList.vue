@@ -70,12 +70,15 @@ export default {
       this.$store.commit("apps/open", name);
     },
     getRect(x, y) {
+      // 핸드폰 크기 비율로 가로 세로가 줄어들어야한다.
+      const ratio = window.innerHeight / window.innerWidth;
+
       const delta = window.innerHeight - y;
       return {
         x,
         y,
-        w: window.innerWidth - delta / 2,
-        h: window.innerHeight - (delta * 3) / 2,
+        w: window.innerWidth - delta,
+        h: (window.innerWidth - delta) * ratio,
       };
     },
     touchstart(e) {
@@ -91,14 +94,12 @@ export default {
 
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
-      console.log(x, y);
       this.rect = this.getRect(x, y);
     },
     touchmove(e) {
       if (this.startAni) {
         const x = e.changedTouches[0].clientX;
         const y = e.changedTouches[0].clientY;
-        console.log(x, y);
         this.rect = this.getRect(x, y);
       }
     },
@@ -203,7 +204,7 @@ $appWidth: calc((100vw - #{$padding} * 2) / 4);
 
       .app-item {
         &.ani {
-          border-radius: 1rem;
+          border-radius: 5rem;
           transition: all 0.05s;
         }
       }
