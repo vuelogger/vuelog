@@ -1,7 +1,7 @@
 <template>
-  <div class="vuelog">
+  <div class="blog-diary">
     <h1>My Blog Diary</h1>
-    <ul>
+    <ul v-if="diary.length > 0">
       <li v-for="d of diary" :key="d.title">
         <div class="created">
           {{ $moment(d.created).format("YYYY. MM. DD.") }}
@@ -11,6 +11,25 @@
         <p>{{ d.content }}</p>
       </li>
     </ul>
+    <div class="skeleton" v-else>
+      <div class="block">
+        <div class="title"></div>
+        <div class="image"></div>
+        <div class="text">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      <div class="block">
+        <div class="title"></div>
+        <div class="text">
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,13 +46,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/scss/base/mixins";
+
 $key-color: #6885ff;
 $bg-color: #1e1e1e;
-.vuelog {
+.blog-diary {
   background-color: $bg-color;
   color: white;
   padding: 6rem 3rem;
   box-sizing: border-box;
+  min-height: 100%;
   h1 {
     font-size: 4.5rem;
     line-height: 1.4;
@@ -123,6 +145,46 @@ $bg-color: #1e1e1e;
             height: 100%;
             background-color: $key-color;
           }
+        }
+      }
+    }
+  }
+
+  .skeleton {
+    flex: 1;
+    padding-top: 3rem;
+    box-sizing: border-box;
+    height: 100%;
+    border-left: 5px solid gray;
+
+    .block {
+      padding-left: 3rem;
+      margin-top: 5rem;
+
+      &:first-child {
+        margin-top: 0;
+      }
+      .title {
+        width: 60%;
+        height: 2rem;
+        border-radius: 2rem;
+        @include skeletonLoading;
+      }
+      .image {
+        width: 100%;
+        aspect-ratio: 1;
+        @include skeletonLoading;
+        margin-top: 2rem;
+        border-radius: 2rem;
+      }
+
+      .text {
+        margin-top: 3rem;
+        p {
+          height: 0.5rem;
+          @include skeletonLoading;
+          margin-top: 1rem;
+          border-radius: 4px;
         }
       }
     }
