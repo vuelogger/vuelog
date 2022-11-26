@@ -36,9 +36,16 @@ export default {
   computed: {
     style() {
       const appHead = this.$getScssLength("appHeadHeight");
-      return {
-        height: this.height ? this.height - appHead + "px" : "100vh",
-      };
+      if (this.$device.isMobileOrTablet) {
+        return { height: this.height ? this.height - appHead + "px" : "100vh" };
+      } else {
+        return {};
+      }
+      // if (this.$device.isMobileOrTablet) {
+      //   return { height: this.height ? this.height - appHead + "px" : "100vh" };
+      // } else {
+      //   return { null };
+      // }
     },
   },
   mounted() {
