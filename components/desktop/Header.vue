@@ -3,6 +3,7 @@
     <NuxtLink to="/" class="header__logo">
       <img src="/logo.png" alt="logo" />
     </NuxtLink>
+    <span class="title">Vue로 만드는 세상</span>
     <HeaderClock class="header__clock" :format="'MMM Do (ddd) A hh:mm'" />
   </header>
 </template>
@@ -32,6 +33,11 @@
       object-fit: contain;
       filter: contrast(0) brightness(2);
     }
+  }
+
+  .title {
+    margin-left: 1rem;
+    font-weight: bold;
   }
 
   &__clock {

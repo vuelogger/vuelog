@@ -1,5 +1,5 @@
 <template>
-  <div class="post-content">
+  <div class="post-content" :class="{ mobile: isMobile }">
     <ContentHeader :post="post" />
     <Tags v-if="post?.title" class="tags" :tags="post.tags" />
     <div class="wrapper">
@@ -83,9 +83,32 @@ export default {
       };
     }
   },
-
+  data() {
+    return {
+      isMobile: false,
+    };
+  },
   computed: {
     ...mapState("post", ["post", "posts", "categories"]),
+    width() {
+      return this.$store.state.apps.apps.Post.w;
+    },
+  },
+  watch: {
+    width: {
+      immediate: true,
+      handler(w) {
+        if (this.$device.isDesktop) {
+          if (w < 768) {
+            this.isMobile = true;
+          } else {
+            this.isMobile = false;
+          }
+        } else {
+          this.isMobile = true;
+        }
+      },
+    },
   },
   fetch() {
     let slug = this.$route.params.slug;
@@ -94,6 +117,7 @@ export default {
     }
     this.$store.dispatch("post/getPost", slug).then(() => {
       document.querySelector(".post").scrollTo(0, 0);
+      document.querySelector(".app").scrollTo(0, 0);
     });
   },
 };
@@ -149,16 +173,6 @@ export default {
             margin-bottom: 5rem;
           }
         }
-      }
-    }
-  }
-}
-
-@include mobile {
-  .post-content {
-    .header {
-      h1 {
-        font-size: 3rem;
       }
     }
   }

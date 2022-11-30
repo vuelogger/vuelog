@@ -58,6 +58,7 @@ export default {
       this.$router.push(`/post/${post.category}/${post.slug}`);
       this.$store.dispatch("post/getPost", post.slug).then(() => {
         document.querySelector(".post").scrollTo(0, 0);
+        document.querySelector(".app").scrollTo(0, 0);
       });
     },
   },

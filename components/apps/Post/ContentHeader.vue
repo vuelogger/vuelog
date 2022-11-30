@@ -1,5 +1,5 @@
 <template>
-  <div class="header" :style="style">
+  <div class="header" :style="style" :class="{ mobile: isMobile }">
     <template v-if="post?.title">
       <div class="cover">
         <img :src="post.cover" />
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       height: null,
+      isMobile: this.$device.isMobileOrTablet,
     };
   },
   computed: {
@@ -61,6 +62,14 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  &.mobile {
+    .text {
+      h1 {
+        font-size: 2.2em;
+      }
+    }
+  }
 
   .cover {
     position: absolute;
@@ -195,12 +204,6 @@ export default {
     width: 100%;
     height: 100%;
     @include skeletonLoading;
-  }
-}
-
-@include mobile {
-  .header {
-    height: calc(100vh - #{$app-head-height});
   }
 }
 </style>

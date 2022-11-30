@@ -66,7 +66,7 @@ export default {
 @import "@/assets/scss/base/variable.scss";
 @import "@/assets/scss/base/mixins.scss";
 .sidebar {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: calc(100% - #{$app-head-height});
   z-index: 100;
