@@ -159,6 +159,7 @@ export default {
       flex-direction: column;
       .title {
         font-size: 1.3em;
+        @include textClip(2);
       }
       .desc {
         margin-top: 0.8rem;
