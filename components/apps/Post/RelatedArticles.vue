@@ -119,8 +119,8 @@ export default {
             font-size: 0.6em;
             padding: 0.3em 0.7em;
             border-radius: 6px;
-            background-color: #f2f2f2;
-            color: black;
+            background-color: #888;
+            color: white;
             margin-right: 1rem;
           }
           .created {

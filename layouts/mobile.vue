@@ -1,12 +1,11 @@
 <template>
   <div class="m-container">
     <img class="bg" src="~/assets/images/mobile_bg.jpeg" />
+    <CanvasSnowAnimation />
 
     <MobileHeader />
     <MobileAppList />
     <Nuxt />
-
-    <CodeAnimation />
   </div>
 </template>
 
