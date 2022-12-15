@@ -8,7 +8,7 @@
         :style="categoryStyle(i)"
         @click="changeCategory(c.category)"
       >
-        <img :src="require(`@/assets/images/apps/post/${c.oriCategory}.png`)" />
+        <img :src="loadImg(c.oriCategory)" />
         <span class="text">{{ c.oriCategory }}</span>
       </button>
     </nav>
@@ -44,6 +44,13 @@ export default {
         left: left + "px",
         top: top + "px",
       };
+    },
+    loadImg(category) {
+      try {
+        return require(`@/assets/images/apps/post/${category}.png`);
+      } catch {
+        return "";
+      }
     },
   },
   mounted() {
