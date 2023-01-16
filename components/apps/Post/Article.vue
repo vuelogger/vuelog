@@ -24,6 +24,7 @@ export default {
   user-select: text;
 
   .toc {
+    display: none;
     position: relative;
     padding-top: 0.5rem;
     padding-bottom: 3rem;
