@@ -109,19 +109,6 @@ export default {
         }
       },
     },
-    post() {
-      if (
-        confirm(
-          "블로그 주소가 이전되었습니다. (https://vue-log.com) 이동하시겠습니까?"
-        )
-      ) {
-        if (this.post?.title) {
-          window.location.href = "https://vue-log.com/post/" + this.post.number;
-        } else {
-          window.location.href = "https://vue-log.com/post";
-        }
-      }
-    },
   },
   fetch() {
     let slug = this.$route.params.slug;
