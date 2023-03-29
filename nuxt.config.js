@@ -29,6 +29,51 @@ const routes = async () => {
   return result;
 };
 
+const getRedirect = async () => {
+  const baseUrl = "https://vue-log.com/";
+
+  const res = await axios.get("https://vuelog.dev/api/categories");
+
+  const result = [];
+
+  for (const c of res.data) {
+    // all은 없앤다.
+    if (c.category) {
+      const postRes = await axios.get("https://vuelog.dev/api/posts", {
+        params: {
+          category: c.category,
+          pageSize: 2000,
+          currPage: 0,
+        },
+      });
+
+      for (const p of postRes.data.data) {
+        result.push({
+          path: "/post/" + p.category + "/" + p.slug,
+          handler(req, res, next) {
+            res.writeHead(301, { Location: baseUrl + "post/" + p.number });
+            res.end();
+          },
+        });
+      }
+    }
+  }
+  result.push({
+    path: "/",
+    handler(req, res, next) {
+      if (req.url === "/") {
+        res.writeHead(301, { Location: baseUrl });
+        res.end();
+      } else {
+        next();
+      }
+    },
+  });
+  return result;
+};
+
+getRedirect();
+
 export default {
   server: {
     host: "0", // default: localhost
