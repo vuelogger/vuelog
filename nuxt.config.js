@@ -129,24 +129,29 @@ export default {
       },
     },
     {
-      path: "/post/*",
+      path: "/post",
       async handler(req, res, next) {
+        console.log("path임");
         const u = req.url.split("/");
 
         const slug = u[u.length - 1];
         console.log("SLUG", slug);
 
-        const { data } = await axios.$get("https://vuelog.dev/api/post", {
-          params: {
-            slug,
-          },
-        });
-        console.log("data", data);
+        if (slug) {
+          const { data } = await axios.get("https://vuelog.dev/api/post", {
+            params: {
+              slug,
+            },
+          });
+          res.writeHead(301, {
+            Location: "https://vue-log.com/post/" + data.number,
+          });
 
-        res.writeHead(301, {
-          Location: "https://vue-log.com/post" + data.number,
-        });
-        res.end();
+          res.end();
+          next();
+        } else {
+          next();
+        }
       },
     },
   ],
