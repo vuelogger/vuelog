@@ -131,10 +131,9 @@ export default {
     {
       path: "/post/*",
       async handler(req, res, next) {
-        // const u = req.url.split("/");
+        const u = req.url.split("/");
 
-        // const slug = u[u.length - 1];
-        const slug = req.route.params.slug;
+        const slug = u[u.length - 1];
         console.log("SLUG", slug);
 
         const { data } = await axios.$get("https://vuelog.dev/api/post", {
@@ -144,7 +143,9 @@ export default {
         });
         console.log("data", data);
 
-        res.writeHead(301, { Location: "https://vue-log.com/" + data.id });
+        res.writeHead(301, {
+          Location: "https://vue-log.com/post" + data.number,
+        });
         res.end();
       },
     },
