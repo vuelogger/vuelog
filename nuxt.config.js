@@ -179,7 +179,7 @@ export default {
     {
       from: "https://vuelog.dev",
       to: "https://vue-log.com/",
-      status: 301,
+      statusCode: 301,
     },
   ],
 
