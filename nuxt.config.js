@@ -49,6 +49,7 @@ const getRedirect = async () => {
         result.push({
           from: "/post/" + p.number,
           to: "/post/" + p.category + "/" + p.slug,
+          statusCode: 301,
         });
       }
     }
