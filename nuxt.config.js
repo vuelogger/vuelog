@@ -34,8 +34,8 @@ const getRedirect = async () => {
 
   const res = await axios.get("https://vuelog.dev/api/categories");
 
-  const result = [{ path: "/api", handler: __dirname + "/api/index.js" }];
-  console.log("result", result);
+  const result = [];
+  console.log("res", res.data);
 
   for (const c of res.data) {
     // all은 없앤다.
@@ -70,11 +70,12 @@ const getRedirect = async () => {
       }
     },
   });
+  console.log(result);
 
   return result;
 };
 
-export default {
+export default async () => ({
   server: {
     host: "0", // default: localhost
   },
@@ -160,7 +161,10 @@ export default {
     ],
   },
 
-  serverMiddleware: getRedirect(),
+  serverMiddleware: [
+    { path: "/api", handler: __dirname + "/api/index.js" },
+    ...(await getRedirect()),
+  ],
 
   router: {
     middleware: ["layout"],
@@ -222,4 +226,4 @@ export default {
   moment: {
     locales: ["ko"],
   },
-};
+});
