@@ -29,39 +29,6 @@ const routes = async () => {
   return result;
 };
 
-const getRedirect = async () => {
-  const baseUrl = "https://vue-log.com/";
-
-  const res = await axios.get("https://vuelog.dev/api/categories");
-
-  const result = [];
-
-  for (const c of res.data) {
-    // all은 없앤다.
-    if (c.category) {
-      const postRes = await axios.get("https://vuelog.dev/api/posts", {
-        params: {
-          category: c.category,
-          pageSize: 2000,
-          currPage: 0,
-        },
-      });
-
-      for (const p of postRes.data.data) {
-        result.push({
-          path: "/post/" + p.category + "/" + p.slug,
-          handler(req, res, next) {
-            res.writeHead(301, { Location: baseUrl + "post/" + p.number });
-            res.end();
-          },
-        });
-      }
-    }
-  }
-
-  return result;
-};
-
 export default {
   server: {
     host: "0", // default: localhost
@@ -154,7 +121,7 @@ export default {
       path: "/",
       handler(req, res, next) {
         if (req.url === "/") {
-          res.writeHead(301, { Location: baseUrl });
+          res.writeHead(301, { Location: "https://vue-log.com/" });
           res.end();
         } else {
           next();
@@ -164,9 +131,20 @@ export default {
     {
       path: "/post/*",
       async handler(req, res, next) {
-        console.log(req.query);
+        // const u = req.url.split("/");
 
-        // await axios.get("https://vuelog.dev/api/posts");
+        // const slug = u[u.length - 1];
+        const slug = req.route.params.slug;
+        console.log("SLUG", slug);
+
+        const { data } = await axios.$get("https://vuelog.dev/api/post", {
+          params: {
+            slug,
+          },
+        });
+        console.log("data", data);
+
+        res.writeHead(301, { Location: "https://vue-log.com/" + data.id });
         res.end();
       },
     },
