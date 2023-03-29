@@ -69,7 +69,6 @@ const getRedirect = async () => {
       }
     },
   });
-  console.log(result);
 
   return result;
 };
