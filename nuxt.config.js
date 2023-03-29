@@ -69,9 +69,12 @@ const getRedirect = async () => {
       }
     },
   });
-
   return result;
 };
+
+getRedirect().then((result) => {
+  console.log(result);
+});
 
 export default async () => ({
   server: {
@@ -159,10 +162,7 @@ export default async () => ({
     ],
   },
 
-  serverMiddleware: [
-    { path: "/api", handler: __dirname + "/api/index.js" },
-    ...(await getRedirect()),
-  ],
+  serverMiddleware: [{ path: "/api", handler: __dirname + "/api/index.js" }],
 
   router: {
     middleware: ["layout"],
