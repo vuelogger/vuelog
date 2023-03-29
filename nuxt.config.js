@@ -35,7 +35,6 @@ const getRedirect = async () => {
   const res = await axios.get("https://vuelog.dev/api/categories");
 
   const result = [];
-  console.log("res", res.data);
 
   for (const c of res.data) {
     // all은 없앤다.
