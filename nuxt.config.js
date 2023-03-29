@@ -175,7 +175,16 @@ export default {
     "@nuxtjs/redirect-module",
   ],
 
-  redirect: getRedirect(),
+  redirect: [
+    {
+      // 이전 URL
+      from: "https://vuelog.dev",
+      // 새 URL
+      from: "https://vue-log.com",
+      // 301 리다이렉트
+      status: 301,
+    },
+  ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ["@nuxtjs/moment", "@nuxtjs/device"],
