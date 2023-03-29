@@ -29,6 +29,33 @@ const routes = async () => {
   return result;
 };
 
+const getRedirect = async () => {
+  const res = await axios.get("https://vuelog.dev/api/categories");
+
+  const result = [];
+
+  for (const c of res.data) {
+    // all은 없앤다.
+    if (c.category) {
+      const postRes = await axios.get("https://vuelog.dev/api/posts", {
+        params: {
+          category: c.category,
+          pageSize: 2000,
+          currPage: 0,
+        },
+      });
+
+      for (const p of postRes.data.data) {
+        result.push({
+          from: "/post/" + p.number,
+          to: "/post/" + p.category + "/" + p.slug,
+        });
+      }
+    }
+  }
+  return result;
+};
+
 export default {
   server: {
     host: "0", // default: localhost
@@ -139,7 +166,10 @@ export default {
     // https://go.nuxtjs.dev/content
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
+    "@nuxtjs/redirect-module",
   ],
+
+  redirect: getRedirect(),
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: ["@nuxtjs/moment", "@nuxtjs/device"],
