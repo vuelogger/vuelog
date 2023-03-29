@@ -138,17 +138,24 @@ export default {
         console.log("SLUG", slug);
 
         if (slug) {
-          const { data } = await axios.get("https://vuelog.dev/api/post", {
-            params: {
-              slug,
-            },
-          });
-          res.writeHead(301, {
-            Location: "https://vue-log.com/post/" + data.number,
-          });
+          if (slug.includes("-")) {
+            const { data } = await axios.get("https://vuelog.dev/api/post", {
+              params: {
+                slug,
+              },
+            });
+            res.writeHead(301, {
+              Location: "https://vue-log.com/post/" + data.number,
+            });
 
-          res.end();
-          next();
+            res.end();
+          } else {
+            res.writeHead(301, {
+              Location: "https://vue-log.com/post/" + slug,
+            });
+
+            res.end();
+          }
         } else {
           next();
         }
