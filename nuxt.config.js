@@ -177,11 +177,8 @@ export default {
 
   redirect: [
     {
-      // 이전 URL
       from: "https://vuelog.dev",
-      // 새 URL
-      from: "https://vue-log.com",
-      // 301 리다이렉트
+      to: "https://vue-log.com/",
       status: 301,
     },
   ],
