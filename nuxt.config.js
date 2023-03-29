@@ -134,7 +134,7 @@ export default {
         console.log("path임");
         const u = req.url.split("/");
 
-        const slug = u[u.length - 1];
+        const slug = decodeURI(u[u.length - 1]);
         console.log("SLUG", slug);
 
         if (slug) {
@@ -144,6 +144,7 @@ export default {
                 slug,
               },
             });
+            console.log(data);
             res.writeHead(301, {
               Location: "https://vue-log.com/post/" + data.number,
             });
