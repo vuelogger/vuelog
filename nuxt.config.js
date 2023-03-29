@@ -184,6 +184,15 @@ export default {
     // https://go.nuxtjs.dev/content
     "@nuxtjs/axios",
     "@nuxtjs/sitemap",
+    "@nuxtjs/redirect-module",
+  ],
+
+  redirect: [
+    {
+      from: "https://vuelog.dev",
+      to: "https://vue-log.com/",
+      statusCode: 301,
+    },
   ],
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
