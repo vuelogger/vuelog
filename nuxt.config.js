@@ -30,9 +30,12 @@ const routes = async () => {
 };
 
 const getRedirect = async () => {
+  const baseUrl = "https://vue-log.com/";
+
   const res = await axios.get("https://vuelog.dev/api/categories");
 
-  const result = [];
+  const result = [{ path: "/api", handler: __dirname + "/api/index.js" }];
+  console.log("result", result);
 
   for (const c of res.data) {
     // all은 없앤다.
@@ -47,18 +50,27 @@ const getRedirect = async () => {
 
       for (const p of postRes.data.data) {
         result.push({
-          from: "https://vuelog.dev/post/" + p.category + "/" + p.slug,
-          to: "https://vue-log.com/post/" + p.number,
-          statusCode: 301,
+          path: "/post/" + p.category + "/" + p.slug,
+          handler(req, res, next) {
+            res.writeHead(301, { Location: baseUrl + "post/" + p.number });
+            res.end();
+          },
         });
       }
     }
   }
   result.push({
-    from: "https://vuelog.dev",
-    to: "https://vue-log.com/",
-    statusCode: 301,
+    path: "/",
+    handler(req, res, next) {
+      if (req.url === "/") {
+        res.writeHead(301, { Location: baseUrl });
+        res.end();
+      } else {
+        next();
+      }
+    },
   });
+
   return result;
 };
 
@@ -148,7 +160,7 @@ export default {
     ],
   },
 
-  serverMiddleware: [{ path: "/api", handler: __dirname + "/api/index.js" }],
+  serverMiddleware: getRedirect(),
 
   router: {
     middleware: ["layout"],
