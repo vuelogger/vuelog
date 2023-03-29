@@ -47,13 +47,18 @@ const getRedirect = async () => {
 
       for (const p of postRes.data.data) {
         result.push({
-          from: "/post/" + p.number,
-          to: "/post/" + p.category + "/" + p.slug,
+          from: "https://vuelog.dev/post/" + p.category + "/" + p.slug,
+          to: "https://vue-log.com/post/" + p.number,
           statusCode: 301,
         });
       }
     }
   }
+  result.push({
+    from: "https://vuelog.dev",
+    to: "https://vue-log.com/",
+    statusCode: 301,
+  });
   return result;
 };
 
